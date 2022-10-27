@@ -12,53 +12,53 @@ class BusquedaForm extends StatelessWidget {
         child: SingleChildScrollView(
             child: Column(
               children: [
-Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      width: double.infinity,
-      child: Form(
-        child: Column(
-          children: [
-            SizedBox(height:10),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Nombre',
-                hintText: 'Nombre'
-              ),
-            ),
-            SizedBox(height:10),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Nivel Educativo',
-                      hintText: 'Nivel Educativo'
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  width: double.infinity,
+                  child: Form(
+                    child: Column(
+                      children: [
+                        SizedBox(height:10),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Nombre',
+                            hintText: 'Nombre'
+                          ),
+                        ),
+                        SizedBox(height:10),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Nivel Educativo',
+                                  hintText: 'Nivel Educativo'
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10,),
+                            Expanded(
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Sector',
+                                  hintText: 'Sector'
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:10),
+                        DropdownButtonFormField(
+                          items: [DropdownMenuItem(child: Text('Ciudad'))], 
+                          onChanged: (value) {}),
+                        SizedBox(height:10),
+                        DropdownButtonFormField(
+                          items: [DropdownMenuItem(child: Text('Área o Especialidad'))], 
+                          onChanged: (value) {}),              
+                      ],
+                      )
                     ),
-                  ),
-                ),
-                SizedBox(width: 10,),
-                Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Sector',
-                      hintText: 'Sector'
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height:10),
-            DropdownButtonFormField(
-              items: [DropdownMenuItem(child: Text('Ciudad'))], 
-              onChanged: (value) {}),
-            SizedBox(height:10),
-            DropdownButtonFormField(
-              items: [DropdownMenuItem(child: Text('Área o Especialidad'))], 
-              onChanged: (value) {}),              
-          ],
-          )
-        ),
-    )
+                )
               ]),
           ),
         );
