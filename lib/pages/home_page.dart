@@ -36,6 +36,12 @@ class _HomePageState extends State<HomePage> {
           ],
       ),
       bottomNavigationBar: Navbar(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, "agregarInst");
+        },
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:eduqro/pages/agregar_institucion_page.dart';
 import 'package:eduqro/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Oferta Eduqro',
       routes: {
         'home': (_) => HomePage(),
+        'agregarInst': (_) => AgregarInstitucionPage(), 
       },
     );
   }
