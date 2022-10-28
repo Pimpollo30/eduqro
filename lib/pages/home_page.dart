@@ -1,5 +1,7 @@
+import 'package:eduqro/pages/acerca_de_page.dart';
 import 'package:eduqro/pages/busqueda_page.dart';
 import 'package:eduqro/pages/instituciones_page.dart';
+import 'package:eduqro/pages/newsletter_page.dart';
 import 'package:eduqro/pages/suscribirse_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +31,8 @@ class _HomePageState extends State<HomePage> {
           BusquedaForm(),
           SuscribirsePage(),
           InstitucionesPage(),
+          NewsletterPage(),
+          AcercaDePage(),
           ],
       ),
       bottomNavigationBar: Navbar(),
