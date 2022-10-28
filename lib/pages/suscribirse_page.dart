@@ -39,8 +39,8 @@ class SuscribirsePage extends StatelessWidget {
               ),
               child: Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 15,
+                  horizontal: 20,
+                  vertical: 10,
                 ),
                 child: Text(
                   "Suscribirse",
