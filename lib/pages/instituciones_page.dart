@@ -6,7 +6,17 @@ class InstitucionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(child: Text("Instituciones")),
+      child: Stack(
+        children: [
+          Positioned(
+            right:10,
+            bottom: 10,
+            child: FloatingActionButton(heroTag:"agregarInst",child:Icon(Icons.add),onPressed: () {
+              Navigator.pushNamed(context, "agregarInst");
+            },),
+          ),
+        ],
+      ),
     );
   }
 }
