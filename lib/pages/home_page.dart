@@ -19,7 +19,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Oferta Eduqro")),
+      appBar: AppBar(title: Text("Oferta Eduqro"),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "login");
+          }, 
+          icon: Icon(Icons.account_circle))
+      ],),
+      
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -36,15 +44,10 @@ class _HomePageState extends State<HomePage> {
           ],
       ),
       bottomNavigationBar: Navbar(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, "agregarInst");
-        },
-      ),
     );
   }
 }
+
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
