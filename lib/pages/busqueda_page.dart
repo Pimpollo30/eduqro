@@ -22,8 +22,10 @@ class BusquedaForm extends StatelessWidget {
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Nombre',
-                            hintText: 'Nombre'
+                            hintText: 'Nombre',
+                            border: OutlineInputBorder(),
                           ),
+                          
                         ),
                         SizedBox(height:10),
                         Row(
@@ -32,7 +34,8 @@ class BusquedaForm extends StatelessWidget {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Nivel Educativo',
-                                  hintText: 'Nivel Educativo'
+                                  hintText: 'Nivel Educativo',
+                                  border: OutlineInputBorder(),
                                 ),
                               ),
                             ),
@@ -41,7 +44,8 @@ class BusquedaForm extends StatelessWidget {
                               child: TextFormField(
                                 decoration: InputDecoration(
                                   labelText: 'Sector',
-                                  hintText: 'Sector'
+                                  hintText: 'Sector',
+                                  border: OutlineInputBorder(),
                                 ),
                               ),
                             ),
@@ -49,10 +53,16 @@ class BusquedaForm extends StatelessWidget {
                         ),
                         SizedBox(height:10),
                         DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
                           items: [DropdownMenuItem(child: Text('Ciudad'))], 
                           onChanged: (value) {}),
                         SizedBox(height:10),
                         DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
                           items: [DropdownMenuItem(child: Text('Área o Especialidad'))], 
                           onChanged: (value) {}),              
                       ],
