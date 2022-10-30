@@ -17,7 +17,7 @@ class SuscribirsePage extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black87,
-                fontSize:20,
+                fontSize:17,
                 fontWeight: FontWeight.bold,
               )
               ),
@@ -25,11 +25,15 @@ class SuscribirsePage extends StatelessWidget {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Correo electrónico',
-                hintText: 'Correo electrónico'
+                hintText: 'Correo electrónico',
+                border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height:10),
             DropdownButtonFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+              ),
               items: [DropdownMenuItem(child: Text('Ciudad'))], 
               onChanged: (value) {}),
             SizedBox(height:10),
