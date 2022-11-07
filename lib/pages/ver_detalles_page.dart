@@ -2,8 +2,8 @@ import 'package:eduqro/widgets/oferta_educativa_card.dart';
 import 'package:flutter/material.dart';
 
 class VerDetallesPage extends StatelessWidget {
-  const VerDetallesPage({super.key});
-
+  // const VerDetallesPage({super.key});
+  final GlobalKey expansionTileKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,6 +150,7 @@ class VerDetallesPage extends StatelessWidget {
             children: <Widget>[
                 ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: 2,
                   itemBuilder: (context, index) => GestureDetector(
                   child: OfertaEducativaCard(),

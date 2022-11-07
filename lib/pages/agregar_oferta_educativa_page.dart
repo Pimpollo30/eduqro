@@ -30,6 +30,7 @@ class AgregarOfertaEducativaPage extends StatelessWidget {
                   controlAffinity: ListTileControlAffinity.trailing,
                   children: <Widget>[
                     ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: 2,
                         itemBuilder: (context, index) => GestureDetector(
