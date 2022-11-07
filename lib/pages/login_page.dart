@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Iniciar Sesión'),
+            Text('Iniciar sesión'),
           ],
         ),
       ),
@@ -19,33 +19,59 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _Login extends StatelessWidget{
+class _Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Usuario o Correo Electronico',
-              hintText: 'Ej: juan@hotmail.com',
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Form(
+        child: Column(
+          children: [
+            TextFormField(
+              cursorColor: Colors.black54,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey)),
+                // labelText: 'Usuario o Correo Electronico',
+                hintText: 'Correo electrónico',
+              ),
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: TextFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Contraseña',
-              hintText: '******'
+            SizedBox(height: 10),
+            TextFormField(
+              cursorColor: Colors.black54,
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                  // labelText: 'Contraseña',
+                  hintText: 'Contraseña'),
             ),
-          ),
+            SizedBox(height: 10),
+            MaterialButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  child: Text(
+                    "Enviar",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+                color: Colors.orange,
+                onPressed: () {}),
+          ],
         ),
-        Center(child: FloatingActionButton.extended(onPressed: (){}, label: Text('Iniciar Sesión',), elevation: 0,),),
-      ],
+      ),
     );
   }
 }

@@ -14,13 +14,15 @@ class NewsletterPage extends StatelessWidget {
             ListView.builder(
               itemCount: 2,
               itemBuilder: (BuildContext context, int index) {
-                return NewsletterCard();
+                return GestureDetector(child: NewsletterCard(), onTap: () {
+                  Navigator.pushNamed(context, "editarNews");
+                },);
               },
             ),
             Positioned(
             right:10,
             bottom: 10,
-            child: FloatingActionButton(heroTag:"crearNews",child:Icon(Icons.add),onPressed: () {
+            child: FloatingActionButton(backgroundColor: Colors.orange,heroTag:"crearNews",child:Icon(Icons.add),onPressed: () {
               Navigator.pushNamed(context, "crearNews");
             },),
           ),

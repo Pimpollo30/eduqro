@@ -23,16 +23,19 @@ class SuscribirsePage extends StatelessWidget {
               ),
             SizedBox(height:10),
             TextFormField(
+              cursorColor: Colors.black54,
               decoration: InputDecoration(
-                labelText: 'Correo electrónico',
+                // labelText: 'Correo electrónico',
                 hintText: 'Correo electrónico',
-                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
               ),
             ),
             SizedBox(height:10),
             DropdownButtonFormField(
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
               ),
               items: [DropdownMenuItem(child: Text('Ciudad'))], 
               onChanged: (value) {}),
@@ -54,9 +57,9 @@ class SuscribirsePage extends StatelessWidget {
                     ),
                   ),
               ),
-              color: Colors.blue,
+              color: Colors.orange,
               onPressed: () {}
-              )
+              ),
           ],
         ),
       ),

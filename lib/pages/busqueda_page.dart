@@ -1,16 +1,17 @@
 // import 'package:eduqro/widgets/navigation_bar.dart';
 import 'package:eduqro/pages/suscribirse_page.dart';
+import 'package:eduqro/widgets/instituciones_card.dart';
 import 'package:flutter/material.dart';
 
 class BusquedaForm extends StatelessWidget {
   // const _BusquedaForm({super.key});
-
   @override
   Widget build(BuildContext context) {
     return 
     SafeArea(
         child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
@@ -20,10 +21,12 @@ class BusquedaForm extends StatelessWidget {
                       children: [
                         SizedBox(height:10),
                         TextFormField(
+                          cursorColor: Colors.black54,
                           decoration: InputDecoration(
-                            labelText: 'Nombre',
+                            // labelText: 'Nombre',
                             hintText: 'Nombre',
-                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
                           ),
                           
                         ),
@@ -31,44 +34,66 @@ class BusquedaForm extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Nivel Educativo',
-                                  hintText: 'Nivel Educativo',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
+                              child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                          ),
+                          items: [DropdownMenuItem(child: Text('Nivel Educativo'))], 
+                          onChanged: (value) {}),
                             ),
                             SizedBox(width: 10,),
                             Expanded(
-                              child: TextFormField(
-                                decoration: InputDecoration(
-                                  labelText: 'Sector',
-                                  hintText: 'Sector',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
+                              child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                          ),
+                          items: [DropdownMenuItem(child: Text('Sector'))], 
+                          onChanged: (value) {}),
                             ),
                           ],
                         ),
                         SizedBox(height:10),
                         DropdownButtonFormField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
                           ),
                           items: [DropdownMenuItem(child: Text('Ciudad'))], 
                           onChanged: (value) {}),
                         SizedBox(height:10),
                         DropdownButtonFormField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(),
+                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
                           ),
                           items: [DropdownMenuItem(child: Text('Área o Especialidad'))], 
                           onChanged: (value) {}),              
                       ],
                       )
                     ),
-                )
+                ),
+                SizedBox(height:10),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text("Resultados",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    color: Colors.black87,
+                  ),),
+                ),
+                SizedBox(height:10),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 2,
+                  itemBuilder: (context, index) => GestureDetector(
+                  child: InstitucionCard(),
+                  onTap: () {
+                    Navigator.pushNamed(context, "verDetalles");
+                  },
+                  )),
               ]),
           ),
         );

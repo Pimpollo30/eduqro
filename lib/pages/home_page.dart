@@ -61,6 +61,7 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      fixedColor: Colors.orange,
       type: BottomNavigationBarType.fixed,
       items: _navList(),
       onTap: (index) {
@@ -68,7 +69,7 @@ class _NavbarState extends State<Navbar> {
           _selectedIndex = index;
           _pageController.animateToPage(_selectedIndex, duration: Duration(microseconds: 300), curve: Curves.easeIn);
         });
-        print("Index: "+_selectedIndex.toString());
+        // print("Index: "+_selectedIndex.toString());
       },
       currentIndex: _selectedIndex,
     );

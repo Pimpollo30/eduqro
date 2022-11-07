@@ -14,215 +14,220 @@ class AgregarInstitucionPage extends StatelessWidget {
             ],
           ),
         ),
-        body: _FormAgregar());
+        body: SingleChildScrollView(child: _FormAgregar()));
   }
 }
 
 class _FormAgregar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
-          children: [
-            Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: SizedBox(
-                    height: 50,
-                    child: TextField(
+    return Container(
+      padding: EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Form(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 10),
+              TextFormField(
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  // labelText: 'Nombre',
+                  hintText: 'Nombre',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
+                        items: [
+                          DropdownMenuItem(child: Text('Nivel Educativo'))
+                        ],
+                        onChanged: (value) {}),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
+                        items: [DropdownMenuItem(child: Text('Sector'))],
+                        onChanged: (value) {}),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.orange)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey)),
+                  ),
+                  items: [DropdownMenuItem(child: Text('Ciudad'))],
+                  onChanged: (value) {}),
+              SizedBox(height: 10),
+              Text(
+                'Área o Especialidad',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
+              ),
+              _CheckBoxes(),
+              TextFormField(
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  // labelText: 'Nombre',
+                  hintText: 'Dirección de la institución',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                ),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  // labelText: 'Nombre',
+                  hintText: 'Página web',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                ),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  // labelText: 'Nombre',
+                  hintText: 'Correo electrónico',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      cursorColor: Colors.black54,
                       decoration: InputDecoration(
-                          labelText: 'Nombre', border: OutlineInputBorder()),
+                        // labelText: 'Nombre',
+                        hintText: 'Facebook',
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey)),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: SizedBox(
-                    height: 50,
-                    child: TextField(
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: TextFormField(
+                    cursorColor: Colors.black54,
+                    decoration: InputDecoration(
+                      // labelText: 'Nombre',
+                      hintText: 'Instagram',
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.orange)),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                    ),
+                  )),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      cursorColor: Colors.black54,
                       decoration: InputDecoration(
-                          labelText: 'Imagen de la Institución',
-                          border: OutlineInputBorder()),
+                        // labelText: 'Nombre',
+                        hintText: 'Costo por inscripción',
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.orange)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey)),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Nivel Educativo',
-                      hintText: '...',
-                      border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.arrow_drop_down)),
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: TextFormField(
+                    cursorColor: Colors.black54,
+                    decoration: InputDecoration(
+                      // labelText: 'Nombre',
+                      hintText: 'Costo por colegiatura',
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.orange)),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                    ),
+                  )),
+                ],
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  // labelText: 'Nombre',
+                  hintText: 'Teléfono',
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
                 ),
               ),
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Sector',
-                      hintText: '...',
-                      border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.arrow_drop_down)),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: SizedBox(
-                height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                      labelText: 'Cuidad',
-                      hintText: '...',
-                      border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.arrow_drop_down)),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Text('Área o Especialidad'),
-        ),
-        _CheckBoxes(),
-        Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: SizedBox(
-                height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Dirección de la Institución',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: SizedBox(
-                height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Dirección de la Página Web',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: SizedBox(
-                height: 50,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Correo Electrónico',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 7.5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Facebook',
-                    hintText: '...',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Instagram',
-                    hintText: '...',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+              SizedBox(height: 10),
+              Center(
+                child: MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
+                      child: Text(
+                        "Agregar",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    color: Colors.orange,
+                    onPressed: () {}),
               ),
             ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 7.5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Costo por inscripción',
-                    hintText: '...',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 50,
-                width: 165,
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Costo por colegiatura',
-                    hintText: '...',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          child: SizedBox(
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Telefono',
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ),
-        ),
-        Center(
-          child: FloatingActionButton.extended(
-          onPressed: () {},
-          label: Text('Agregar'),
-          elevation: 0,
-        ))
-      ],
+          )),
+        ],
+      ),
     );
   }
 }
@@ -234,39 +239,72 @@ class _CheckBoxes extends StatelessWidget {
       children: [
         Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (_) {},
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (_) {},
+                  ),
+                  Text('Artes'),
+                ],
+              ),
             ),
-            Text('Artes'),
-            Checkbox(
-              value: false,
-              onChanged: (_) {},
+            Expanded(
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (_) {},
+                  ),
+                  Text('Ciencias'),
+                ],
+              ),
             ),
-            Text('Ciencias'),
           ],
         ),
         Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (_) {},
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (_) {},
+                  ),
+                  Text('Educación'),
+                ],
+              ),
             ),
-            Text('Educación'),
-            Checkbox(
-              value: false,
-              onChanged: (_) {},
+            Expanded(
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (_) {},
+                  ),
+                  Text('Humanidades'),
+                ],
+              ),
             ),
-            Text('Humanidades'),
           ],
         ),
         Row(
           children: [
-            Checkbox(
-              value: false,
-              onChanged: (_) {},
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (_) {},
+                  ),
+                  Text('Ingenierías'),
+                ],
+              ),
             ),
-            Text('Ingenierias'),
           ],
         ),
       ],
