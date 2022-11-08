@@ -39,7 +39,7 @@ class BusquedaForm extends StatelessWidget {
                             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
                             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
                           ),
-                          items: [DropdownMenuItem(child: Text('Nivel Educativo'))], 
+                          items: [DropdownMenuItem(child: Text('Nivel'))], 
                           onChanged: (value) {}),
                             ),
                             SizedBox(width: 10,),

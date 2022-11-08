@@ -42,7 +42,7 @@ class EditarInstitucionPage extends StatelessWidget {
                                   borderSide: BorderSide(color: Colors.grey)),
                             ),
                             items: [
-                              DropdownMenuItem(child: Text('Nivel Educativo'))
+                              DropdownMenuItem(child: Text('Nivel'))
                             ],
                             onChanged: (value) {}),
                       ),
