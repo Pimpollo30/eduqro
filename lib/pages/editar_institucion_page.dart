@@ -209,7 +209,7 @@ class EditarInstitucionPage extends StatelessWidget {
                       "Modificar",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14.5,
+                        fontSize: 13,
                         ),
                       ),
                   ),
@@ -228,10 +228,11 @@ class EditarInstitucionPage extends StatelessWidget {
                         vertical: 10,
                       ),
                       child: Text(
+                        textAlign: TextAlign.center,
                         "Agregar Oferta Educativa",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 14.5,
+                          fontSize: 13,
                           ),
                         ),
                     ),
