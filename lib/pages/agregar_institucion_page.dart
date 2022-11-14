@@ -1,11 +1,41 @@
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/institucion_form_provider.dart';
+import 'services/institucion_form_service.dart';
 
 class AgregarInstitucionPage extends StatelessWidget {
-  const AgregarInstitucionPage({super.key});
+  // const AgregarInstitucionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    final institucionService = Provider.of<InstitucionService>(context);
+
+    return ChangeNotifierProvider(
+      create: (_) => InstitucionFormProvider(institucionService.institucionSeleccionado!),
+      child: _AgregarInstitucionPageBody(institucionService: institucionService,),
+    );
+
+  }
+}
+
+class _AgregarInstitucionPageBody extends StatelessWidget {
+  const _AgregarInstitucionPageBody({
+    Key? key,
+    required this.institucionService,
+  }) : super(key: key);
+
+  final InstitucionService institucionService;
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    final institucionFormProvider = Provider.of<InstitucionFormProvider>(context);
+    final institucion = institucionFormProvider.institucion;
+
+      return Scaffold(
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -14,24 +44,20 @@ class AgregarInstitucionPage extends StatelessWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(child: _FormAgregar()));
-  }
-}
-
-class _FormAgregar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+        body: SingleChildScrollView(
+          child: Container(
       padding: EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Form(
-              child: Column(
+            key: institucionFormProvider.formKey,
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 10),
               TextFormField(
+                initialValue: institucion.nombre,
                 cursorColor: Colors.black54,
                 decoration: InputDecoration(
                   // labelText: 'Nombre',
@@ -41,58 +67,60 @@ class _FormAgregar extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                 ),
+                onChanged: (value) => institucion.nombre = value,
               ),
               SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
                     child: DropdownButtonFormField(
+                        value: institucion.nivel,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.orange)),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey)),
                         ),
-                        items: [
-                          DropdownMenuItem(child: Text('Nivel'))
-                        ],
-                        onChanged: (value) {}),
+                        items: _crearNiveles(),
+                        onChanged: (value) => institucion.nivel = value),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Expanded(
                     child: DropdownButtonFormField(
+                        value: institucion.sector,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.orange)),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey)),
                         ),
-                        items: [DropdownMenuItem(child: Text('Sector'))],
-                        onChanged: (value) {}),
+                        items: _creatSectores(),
+                        onChanged: (value) => institucion.sector = value),
                   ),
                 ],
               ),
               SizedBox(height: 10),
               DropdownButtonFormField(
+                  value: institucion.ciudad,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.orange)),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey)),
                   ),
-                  items: [DropdownMenuItem(child: Text('Ciudad'))],
-                  onChanged: (value) {}),
+                  items: _crearCiudades(),
+                  onChanged: (value) => institucion.ciudad = value),
               SizedBox(height: 10),
-              Text(
-                'Área o Especialidad',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
-                ),
-              ),
-              _CheckBoxes(),
+              // Text(
+              //   'Área o Especialidad',
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     color: Colors.black87,
+              //   ),
+              // ),
+              // _CheckBoxes(),
               TextFormField(
                 cursorColor: Colors.black54,
                 decoration: InputDecoration(
@@ -103,6 +131,7 @@ class _FormAgregar extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                 ),
+                onChanged: (value) => institucion.direccion = value
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -115,6 +144,7 @@ class _FormAgregar extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                 ),
+                onChanged: (value) => institucion.pagina = value
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -127,6 +157,7 @@ class _FormAgregar extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                 ),
+                onChanged: (value) => institucion.correo = value
               ),
               SizedBox(height: 10),
               Row(
@@ -142,6 +173,7 @@ class _FormAgregar extends StatelessWidget {
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                       ),
+                      onChanged: (value) => institucion.facebook = value
                     ),
                   ),
                   SizedBox(width: 10),
@@ -156,6 +188,7 @@ class _FormAgregar extends StatelessWidget {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey)),
                     ),
+                    onChanged: (value) => institucion.instagram = value
                   )),
                 ],
               ),
@@ -173,6 +206,7 @@ class _FormAgregar extends StatelessWidget {
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                       ),
+                      onChanged: (value) => institucion.cInscripcion = value
                     ),
                   ),
                   SizedBox(width: 10),
@@ -187,6 +221,7 @@ class _FormAgregar extends StatelessWidget {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey)),
                     ),
+                    onChanged: (value) => institucion.cColegiatura = value
                   )),
                 ],
               ),
@@ -201,6 +236,7 @@ class _FormAgregar extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                 ),
+                onChanged: (value) => institucion.telefono = value
               ),
               SizedBox(height: 10),
               Center(
@@ -222,15 +258,20 @@ class _FormAgregar extends StatelessWidget {
                       ),
                     ),
                     color: Colors.orange,
-                    onPressed: () {}),
+                    onPressed: () async {
+                      if (!institucionFormProvider.isValidForm()) return;
+                        await institucionService.agregarInstitucion(institucionFormProvider.institucion);
+                        Navigator.pop(context);
+                    }),
               ),
             ],
           )),
         ],
       ),
-    );
+    )));
   }
 }
+
 
 class _CheckBoxes extends StatelessWidget {
   @override
@@ -311,3 +352,64 @@ class _CheckBoxes extends StatelessWidget {
     );
   }
 }
+
+
+List<String> niveles =[
+    'Nivel...',
+    'Medio Superior',
+    'Superior',
+    ];
+
+
+List<String> sectores =[
+    'Sector...',
+    'Público',
+    'Privado',
+    ];
+
+List<String> ciudades =[
+    'Ciudad...',
+    'Amealco de Bonfil',
+    'Pinal de Amoles',
+    'Arroyo Seco',
+    'Cadereyta de Montes',
+    'Colón',
+    'Corregidora',
+    'Ezequiel Montes',
+    'Huimilpan',
+    'Jalpan de Serra',
+    'Landa de Matamoros',
+    'El Marqués',
+    'Pedro Escobedo',
+    'Peñamiller',
+    'Querétaro',
+    'San Joaquín',
+    'San Juan del Río',
+    'Tequisquiapan',
+    'Tolimán',
+    ];
+
+
+  List<DropdownMenuItem> _creatSectores() {
+    List<DropdownMenuItem> lista = [];
+    sectores.forEach((element) {
+      lista.add(DropdownMenuItem(child:Text(element),value:element));
+    });
+    return lista;
+  }
+
+  List<DropdownMenuItem> _crearCiudades() {
+    List<DropdownMenuItem> lista = [];
+    ciudades.forEach((element) {
+      lista.add(DropdownMenuItem(child:Text(element),value:element));
+    });
+    return lista;
+  }
+
+    List<DropdownMenuItem> _crearNiveles() {
+    List<DropdownMenuItem> lista = [];
+    niveles.forEach((element) {
+      lista.add(DropdownMenuItem(child:Text(element),value:element));
+    });
+    return lista;
+  }

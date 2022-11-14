@@ -7,11 +7,30 @@ import 'package:eduqro/pages/editar_oferta_educativa_page.dart';
 import 'package:eduqro/pages/enviar_newsletter_page.dart';
 import 'package:eduqro/pages/home_page.dart';
 import 'package:eduqro/pages/login_page.dart';
+import 'package:eduqro/pages/services/newsletter_service.dart';
 import 'package:eduqro/pages/ver_detalles_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'pages/services/institucion_form_service.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(AppState());
+}
+
+class AppState extends StatelessWidget {
+  // const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => InstitucionService()),
+        ChangeNotifierProvider(create: (_) => NewsletterService()),
+      ],
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

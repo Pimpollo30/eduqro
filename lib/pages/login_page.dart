@@ -60,7 +60,7 @@ class _Login extends StatelessWidget {
                     vertical: 10,
                   ),
                   child: Text(
-                    "Enviar",
+                    "Iniciar sesión",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,

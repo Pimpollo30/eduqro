@@ -1,14 +1,51 @@
+import 'package:eduqro/models/suscripcion.dart';
+import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/providers/suscripcion_form_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+
+
 
 class SuscribirsePage extends StatelessWidget {
-  const SuscribirsePage({super.key});
+  // const SuscribirsePage({super.key});
+  
+  @override
+  Widget build(BuildContext context) {
+    final newsletterService = Provider.of<NewsletterService>(context);    
+    newsletterService.suscripcionSeleccionado = new Suscripcion(
+      ciudad: 'Ciudad...',
+      correo: '',
+    );     
+    return ChangeNotifierProvider(
+      create: (_) => SuscripcionFormProvider(newsletterService.suscripcionSeleccionado!),
+      child: _SuscribirsePageBody(newsletterService: newsletterService,),
+    );
+  }
+}
+
+class _SuscribirsePageBody extends StatelessWidget {
+  // const _SuscribirsePageBody({super.key});
+
+
+  const _SuscribirsePageBody({
+    Key? key,
+    required this.newsletterService,
+  }) : super(key: key);
+
+  final NewsletterService newsletterService;
 
   @override
   Widget build(BuildContext context) {
+
+    final suscripcionFormProvider = Provider.of<SuscripcionFormProvider>(context);
+    final suscripcion = suscripcionFormProvider.suscripcion;    
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
       child: Form(
+        key: suscripcionFormProvider.formKey,
         child: Column(
           children: [
             SizedBox(height:10),
@@ -30,15 +67,20 @@ class SuscribirsePage extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
                 enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
               ),
+              onChanged: (value) => suscripcion.correo = value,
             ),
             SizedBox(height:10),
             DropdownButtonFormField(
+              value:'Ciudad...',
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.orange)),
                 enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
               ),
-              items: [DropdownMenuItem(child: Text('Ciudad'))], 
-              onChanged: (value) {}),
+              items: _crearCiudades(),
+              onChanged: (value) {
+                // _ciudad = value;
+                suscripcion.ciudad = value;
+              }),
             SizedBox(height:10),
             MaterialButton(
               shape: RoundedRectangleBorder(
@@ -58,7 +100,11 @@ class SuscribirsePage extends StatelessWidget {
                   ),
               ),
               color: Colors.orange,
-              onPressed: () {}
+              onPressed: () async {
+                if (!suscripcionFormProvider.isValidForm()) return;
+                  await newsletterService.suscribirseNewsletter(suscripcionFormProvider.suscripcion);
+                  print("Se envió correctamente");
+              }
               ),
           ],
         ),
@@ -66,3 +112,33 @@ class SuscribirsePage extends StatelessWidget {
     );
   }
 }
+
+List<String> ciudades =[
+    'Ciudad...',
+    'Amealco de Bonfil',
+    'Pinal de Amoles',
+    'Arroyo Seco',
+    'Cadereyta de Montes',
+    'Colón',
+    'Corregidora',
+    'Ezequiel Montes',
+    'Huimilpan',
+    'Jalpan de Serra',
+    'Landa de Matamoros',
+    'El Marqués',
+    'Pedro Escobedo',
+    'Peñamiller',
+    'Querétaro',
+    'San Joaquín',
+    'San Juan del Río',
+    'Tequisquiapan',
+    'Tolimán',
+    ];
+
+  List<DropdownMenuItem> _crearCiudades() {
+    List<DropdownMenuItem> lista = [];
+    ciudades.forEach((element) {
+      lista.add(DropdownMenuItem(child:Text(element),value:element));
+    });
+    return lista;
+  }
