@@ -1,5 +1,6 @@
 import 'package:eduqro/models/newsletter.dart';
 import 'package:eduqro/models/suscripcion.dart';
+import 'package:eduqro/pages/loading_page.dart';
 import 'package:eduqro/pages/services/newsletter_service.dart';
 import 'package:eduqro/providers/newsletter_form_provider.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,13 @@ class NewsletterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final newsletterService = Provider.of<NewsletterService>(context);   
+    final newsletterService = Provider.of<NewsletterService>(context);
     return ChangeNotifierProvider(
-      create: (_) => NewsletterFormProvider(newsletterService.newsletterSeleccionado!),
-      child: _NewsletterPageBody(newsletterService: newsletterService,),
+      create: (_) =>
+          NewsletterFormProvider(newsletterService.newsletterSeleccionado!),
+      child: _NewsletterPageBody(
+        newsletterService: newsletterService,
+      ),
     );
   }
 }
@@ -23,7 +27,7 @@ class NewsletterPage extends StatelessWidget {
 class _NewsletterPageBody extends StatelessWidget {
   // const _NewsletterPageBody({super.key});
 
-    const _NewsletterPageBody({
+  const _NewsletterPageBody({
     Key? key,
     required this.newsletterService,
   }) : super(key: key);
@@ -32,33 +36,47 @@ class _NewsletterPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final newsletterService = Provider.of<NewsletterService>(context);    
-    var estilo = TextStyle(fontWeight: FontWeight.w500, fontSize: 20, height: 0);
-     return Container(
-       child: Stack(
-         children: [
-            ListView.builder(
-              itemCount: 3,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(child: NewsletterCard(), onTap: () {
+    final newsletterService = Provider.of<NewsletterService>(context);
+    if (newsletterService.isLoading) return LoadingPage();
+    var estilo =
+        TextStyle(fontWeight: FontWeight.w500, fontSize: 20, height: 0);
+    return Container(
+      child: Stack(
+        children: [
+          ListView.builder(
+            itemCount: newsletterService.newsletters.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                child: NewsletterCard(
+                  newsletter: newsletterService.newsletters[index],
+                ),
+                onTap: () {
+                  newsletterService.newsletterSeleccionado =
+                      newsletterService.newsletters[index].copy();
                   Navigator.pushNamed(context, "editarNews");
-                },);
-              },
-            ),
-            Positioned(
-            right:10,
+                },
+              );
+            },
+          ),
+          Positioned(
+            right: 10,
             bottom: 10,
-            child: FloatingActionButton(backgroundColor: Colors.orange,heroTag:"crearNews",child:Icon(Icons.add),onPressed: () {
+            child: FloatingActionButton(
+              backgroundColor: Colors.orange,
+              heroTag: "crearNews",
+              child: Icon(Icons.add),
+              onPressed: () {
                 newsletterService.newsletterSeleccionado = new Newsletter(
-                  asunto:'',
+                  asunto: '',
                   contenido: '',
                   fecha: '',
-                );                   
-              Navigator.pushNamed(context, "crearNews");
-            },),
+                );
+                Navigator.pushNamed(context, "crearNews");
+              },
+            ),
           ),
-         ],
-       ),
-     );
+        ],
+      ),
+    );
   }
 }

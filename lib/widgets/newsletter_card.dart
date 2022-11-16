@@ -1,6 +1,10 @@
+import 'package:eduqro/models/newsletter.dart';
 import 'package:flutter/material.dart';
 
 class NewsletterCard extends StatelessWidget {
+  const NewsletterCard({Key? key, required this.newsletter}) : super(key: key);
+
+  final Newsletter newsletter;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,13 +30,13 @@ class NewsletterCard extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(top: 30, left: 10, child: Text('XX/XX/XXXX')),
+            Positioned(top: 30, left: 10, child: Text(newsletter.fecha)),
             SizedBox(height: 20),
             Positioned(
               top: 50,
               left: 10,
               child: Text(
-                'Asunto',
+                newsletter.asunto,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -44,7 +48,7 @@ class NewsletterCard extends StatelessWidget {
                 top: 70,
                 left: 10,
                 child: Text(
-                  'Aliquip nostrud tempor dolor adipisicing culpa exercitation sint fugiat in incididunt. Voluptate cillum cupidatat nulla cillum cillum exercitation. Laborum exercitation elit adipisicing exercitation exercitation.',
+                  newsletter.contenido,
                 )),
             Positioned(
                 bottom: 10,

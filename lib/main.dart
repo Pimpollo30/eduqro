@@ -8,6 +8,7 @@ import 'package:eduqro/pages/enviar_newsletter_page.dart';
 import 'package:eduqro/pages/home_page.dart';
 import 'package:eduqro/pages/login_page.dart';
 import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/pages/services/oferta_form_service.dart';
 import 'package:eduqro/pages/ver_detalles_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => InstitucionService()),
         ChangeNotifierProvider(create: (_) => NewsletterService()),
+        ChangeNotifierProvider(create: (_) => OfertaService()),
       ],
       child: MyApp(),
     );
@@ -40,28 +42,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'home',
-      title: 'Oferta Eduqro',
-      routes: {
-        'home': (_) => HomePage(),
-        'agregarInst': (_) => AgregarInstitucionPage(), 
-        'crearNews': (_) => CrearNewsletterPage(),
-        'editarNews': (_) => EditarNewsletterPage(),
-        'login': (_) => LoginPage(),
-        'verDetalles': (_) => VerDetallesPage(), 
-        'editarInst': (_) => EditarInstitucionPage(),
-        'agregarOferta': (_) => AgregarOfertaEducativaPage(),
-        'editarOferta': (_) => EditarOfertaEducativaPage(),
-        'enviarNews': (_) => EnviarNewsletterPage(),
-      },
-      theme: ThemeData.light().copyWith(
-        appBarTheme: AppBarTheme(
+        debugShowCheckedModeBanner: false,
+        initialRoute: 'home',
+        title: 'Oferta Eduqro',
+        routes: {
+          'home': (_) => HomePage(),
+          'agregarInst': (_) => AgregarInstitucionPage(),
+          'crearNews': (_) => CrearNewsletterPage(),
+          'editarNews': (_) => EditarNewsletterPage(),
+          'login': (_) => LoginPage(),
+          'verDetalles': (_) => VerDetallesPage(),
+          'editarInst': (_) => EditarInstitucionPage(),
+          'agregarOferta': (_) => AgregarOfertaEducativaPage(),
+          'editarOferta': (_) => EditarOfertaEducativaPage(),
+          'enviarNews': (_) => EnviarNewsletterPage(),
+        },
+        theme: ThemeData.light().copyWith(
+            appBarTheme: AppBarTheme(
           color: Colors.orange,
-          elevation:0,
-        ))
-    );
+          elevation: 0,
+        )));
   }
 }
-
-
