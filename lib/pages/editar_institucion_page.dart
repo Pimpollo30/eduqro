@@ -37,7 +37,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final institucionFormProvider =
         Provider.of<InstitucionFormProvider>(context);
-    final institucion = institucionFormProvider.institucion;
+    final institucion = institucionFormProvider.institucion!;
 
     final ofertaService = Provider.of<OfertaService>(context);
 
@@ -283,7 +283,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                   if (!institucionFormProvider.isValidForm())
                                     return;
                                   await institucionService.modificarInstitucion(
-                                      institucionFormProvider.institucion);
+                                      institucionFormProvider.institucion!);
                                   Navigator.pop(context);
                                 }),
                             SizedBox(width: 5),
@@ -316,6 +316,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                       proposito: '',
                                       programa: '',
                                     );
+                                    ofertaService.filtrarOferta(institucionService.institucionSeleccionado!.id!);
                                     Navigator.pushNamed(
                                         context, "agregarOferta");
                                   }),

@@ -92,7 +92,10 @@ class OfertaEducativaAdminCard extends StatelessWidget {
             SizedBox(width: 10),
             Container(
               child: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.delete_outline)),
+                  onPressed: () {
+                    ofertaService.eliminarOferta(oferta);
+                  },
+                  icon: Icon(Icons.delete_outline)),
               decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   border: Border.all(color: Colors.grey.shade400),

@@ -55,7 +55,9 @@ class _EnviarNewsletterPageState extends State<EnviarNewsletterPage> {
                           color: Colors.black87,
                         ),
                       ),
-                      SizedBox(height:10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text(
                         "Asunto",
                         style: TextStyle(
@@ -71,83 +73,80 @@ class _EnviarNewsletterPageState extends State<EnviarNewsletterPage> {
                           color: Colors.black87,
                         ),
                       ),
-
                     ],
                   ),
                 ),
-                SizedBox(height:15),
-                      Text(
-                        "Destinatarios",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.black87,
+                SizedBox(height: 15),
+                Text(
+                  "Destinatarios",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black87,
+                  ),
+                ),
+                ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text("Todos los usuarios suscritos al newsletter"),
+                    leading: Radio<SingingCharacter>(
+                      activeColor: Colors.orange,
+                      value: SingingCharacter.todos,
+                      groupValue: _character,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            _character = value;
+                          },
+                        );
+                      },
+                    )),
+                ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text("Usuarios de una determinada entidad"),
+                    leading: Radio<SingingCharacter>(
+                      activeColor: Colors.orange,
+                      value: SingingCharacter.usuarios,
+                      groupValue: _character,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            _character = value;
+                          },
+                        );
+                      },
+                    )),
+                Form(
+                    child: Column(
+                  children: [
+                    DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
                         ),
-                      ),
-                      ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                              "Todos los usuarios suscritos al newsletter"),
-                          leading: Radio<SingingCharacter>(
-                            activeColor: Colors.orange,
-                            value: SingingCharacter.todos,
-                            groupValue: _character,
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  _character = value;
-                                },
-                              );
-                            },
-                          )),
-                      ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text("Usuarios de una determinada entidad"),
-                          leading: Radio<SingingCharacter>(
-                            activeColor: Colors.orange,
-                            value: SingingCharacter.usuarios,
-                            groupValue: _character,
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  _character = value;
-                                },
-                              );
-                            },
-                          )),
-                      Form(
-                          child: Column(
-                        children: [
-                          DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color:Colors.orange)
-                                  ),
-                              ),
-                              items: [DropdownMenuItem(child: Text('Ciudad'))],
-                              onChanged: (value) {}),
-                          SizedBox(height: 10),
-                          MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 10,
-                                ),
-                                child: Text(
-                                  "Enviar",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ),
-                              color: Colors.orange,
-                              onPressed: () {}),
-                        ],
-                      )),                
+                        items: [DropdownMenuItem(child: Text('Ciudad'))],
+                        onChanged: (value) {}),
+                    SizedBox(height: 10),
+                    MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Text(
+                            "Enviar",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          ),
+                        ),
+                        color: Colors.orange,
+                        onPressed: () {}),
+                  ],
+                )),
               ],
             )));
   }

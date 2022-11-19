@@ -1,5 +1,7 @@
 import 'package:eduqro/models/institucion.dart';
+import 'package:eduqro/pages/services/institucion_form_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class InstitucionAdminCard extends StatelessWidget {
   // const InstitucionAdminCard({super.key});
@@ -11,6 +13,7 @@ class InstitucionAdminCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final institucionService = Provider.of<InstitucionService>(context);
     return Container(
       width: double.infinity,
       child: ListTile(
@@ -29,7 +32,9 @@ class InstitucionAdminCard extends StatelessWidget {
                 Icons.delete_outline,
                 color: Colors.black87,
               ),
-              onPressed: () {},
+              onPressed: () {
+                institucionService.eliminarInstitucion(institucion);
+              },
             )),
         title: Text(
           institucion.nombre,

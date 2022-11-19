@@ -22,19 +22,19 @@ class CrearNewsletterPage extends StatelessWidget {
 class _NewsletterPageBody extends StatelessWidget {
   // const _NewsletterPageBody({super.key});
 
-    const _NewsletterPageBody({
+  const _NewsletterPageBody({
     Key? key,
     required this.newsletterService,
   }) : super(key: key);
 
   final NewsletterService newsletterService;
-  
+
   @override
   Widget build(BuildContext context) {
     TextEditingController textarea = TextEditingController();
 
     final newsletterFormProvider = Provider.of<NewsletterFormProvider>(context);
-    final newsletter = newsletterFormProvider.newsletter;    
+    final newsletter = newsletterFormProvider.newsletter;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,7 +63,6 @@ class _NewsletterPageBody extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.grey)),
                       // labelText: 'Asunto o tema',
                       hintText: 'Asunto o tema'),
-
                   onChanged: (value) => newsletter.asunto = value,
                 ),
                 SizedBox(height: 10),
@@ -104,9 +103,10 @@ class _NewsletterPageBody extends StatelessWidget {
                       ),
                       color: Colors.orange,
                       onPressed: () async {
-                      if (!newsletterFormProvider.isValidForm()) return;
-                        await newsletterService.agregarNewsletter(newsletterFormProvider.newsletter);
-                        Navigator.pop(context);                        
+                        if (!newsletterFormProvider.isValidForm()) return;
+                        await newsletterService.agregarNewsletter(
+                            newsletterFormProvider.newsletter);
+                        Navigator.pop(context);
                       }),
                 ),
               ],

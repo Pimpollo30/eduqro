@@ -12,22 +12,23 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-  int _selectedIndex = 0;
-  final _pageController = PageController(initialPage: 0);
+int _selectedIndex = 0;
+final _pageController = PageController(initialPage: 0);
 
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Oferta Eduqro"),
-      actions: [
-        IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "login");
-          }, 
-          icon: Icon(Icons.account_circle))
-      ],),
-      
+      appBar: AppBar(
+        title: Text("Oferta Eduqro"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "login");
+              },
+              icon: Icon(Icons.account_circle))
+        ],
+      ),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -41,13 +42,12 @@ class _HomePageState extends State<HomePage> {
           InstitucionesPage(),
           NewsletterPage(),
           AcercaDePage(),
-          ],
+        ],
       ),
       bottomNavigationBar: Navbar(),
     );
   }
 }
-
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -57,7 +57,6 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -67,7 +66,8 @@ class _NavbarState extends State<Navbar> {
       onTap: (index) {
         setState(() {
           _selectedIndex = index;
-          _pageController.animateToPage(_selectedIndex, duration: Duration(microseconds: 300), curve: Curves.easeIn);
+          _pageController.animateToPage(_selectedIndex,
+              duration: Duration(microseconds: 300), curve: Curves.easeIn);
         });
         // print("Index: "+_selectedIndex.toString());
       },
@@ -78,25 +78,10 @@ class _NavbarState extends State<Navbar> {
 
 List<BottomNavigationBarItem> _navList() {
   return [
-    BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Inicio'
-          ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.mail),
-        label: 'Suscribirse'
-        ),  
-      BottomNavigationBarItem(
-        icon: Icon(Icons.backpack),
-        label: 'Instituciones'
-        ),          
-      BottomNavigationBarItem(
-        icon: Icon(Icons.newspaper),
-        label: 'Newsletter'
-        ),                 
-      BottomNavigationBarItem(
-        icon: Icon(Icons.info),
-        label: 'Acerca de'
-        ),
-      ];
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+    BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'Suscribirse'),
+    BottomNavigationBarItem(icon: Icon(Icons.backpack), label: 'Instituciones'),
+    BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Newsletter'),
+    BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Acerca de'),
+  ];
 }

@@ -1,5 +1,7 @@
 import 'package:eduqro/models/newsletter.dart';
+import 'package:eduqro/pages/services/newsletter_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NewsletterCard extends StatelessWidget {
   const NewsletterCard({Key? key, required this.newsletter}) : super(key: key);
@@ -7,6 +9,7 @@ class NewsletterCard extends StatelessWidget {
   final Newsletter newsletter;
   @override
   Widget build(BuildContext context) {
+    final newsletterService = Provider.of<NewsletterService>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -78,7 +81,10 @@ class NewsletterCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.delete_outline)))),
+                        onPressed: () {
+                          newsletterService.eliminarNewsletter(newsletter);
+                        },
+                        icon: Icon(Icons.delete_outline)))),
           ],
         ),
       ),

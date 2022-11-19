@@ -6,12 +6,18 @@ import 'package:eduqro/widgets/instituciones_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class InstitucionesPage extends StatelessWidget {
+class InstitucionesPage extends StatefulWidget {
   const InstitucionesPage({super.key});
 
   @override
+  State<InstitucionesPage> createState() => _InstitucionesPageState();
+}
+
+class _InstitucionesPageState extends State<InstitucionesPage> {
+  @override
   Widget build(BuildContext context) {
     final institucionService = Provider.of<InstitucionService>(context);
+
     if (institucionService.isLoading) return LoadingPage();
     return Container(
       padding: EdgeInsets.all(10),
@@ -19,6 +25,7 @@ class InstitucionesPage extends StatelessWidget {
         children: [
           SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Form(
                     child: Column(
@@ -35,6 +42,9 @@ class InstitucionesPage extends StatelessWidget {
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                       ),
+                      onChanged: (value) async {
+                        institucionService.buscarInstByName(value);
+                      },
                     ),
                     SizedBox(height: 10),
                   ],
@@ -43,6 +53,7 @@ class InstitucionesPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     "Lista de instituciones",
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,
@@ -65,7 +76,7 @@ class InstitucionesPage extends StatelessWidget {
                                 institucionService.instituciones[index].copy();
                             Navigator.pushNamed(context, "editarInst");
                           },
-                        )),
+                        ))
               ],
             ),
           ),

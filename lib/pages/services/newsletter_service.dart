@@ -26,6 +26,11 @@ class NewsletterService extends ChangeNotifier {
     final url = Uri.https(_baseUrl, "newsletters.json");
     final resp = await http.get(url);
 
+    if (json.decode(resp.body) == null) {
+      this.isLoading = false;
+      notifyListeners();
+      return [];
+    }
     final Map<String, dynamic> newslettersMap = json.decode(resp.body);
 
     newslettersMap.forEach((key, value) {
@@ -78,6 +83,22 @@ class NewsletterService extends ChangeNotifier {
     final index =
         this.newsletters.indexWhere((element) => element.id == newsletter.id);
     this.newsletters[index] = newsletter;
+    isSaving = false;
+    notifyListeners();
+    return newsletter.id!;
+  }
+
+  Future<String> eliminarNewsletter(Newsletter newsletter) async {
+    isSaving = true;
+    notifyListeners();
+    final url = Uri.https(_baseUrl, "newsletters/${newsletter.id}.json");
+    final resp = await http.delete(url, body: newsletter.toJson());
+    final decodedData = resp.body;
+    // print(decodedData);
+    //actualizamos el listado de productos
+    final index =
+        this.newsletters.indexWhere((element) => element.id == newsletter.id);
+    this.newsletters.removeAt(index);
     isSaving = false;
     notifyListeners();
     return newsletter.id!;
