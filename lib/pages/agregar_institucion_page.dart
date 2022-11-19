@@ -248,6 +248,18 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                           ),
                           onChanged: (value) => institucion.telefono = value),
                       SizedBox(height: 10),
+                      TextFormField(
+                          cursorColor: Colors.black54,
+                          decoration: InputDecoration(
+                            // labelText: 'Nombre',
+                            hintText: 'Logo URL',
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.orange)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey)),
+                          ),
+                          onChanged: (value) => institucion.logo = value),
+                      SizedBox(height: 10),
                       Center(
                         child: MaterialButton(
                             shape: RoundedRectangleBorder(

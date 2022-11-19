@@ -256,6 +256,20 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                         onChanged: (value) => institucion.telefono = value,
                       ),
                       SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: institucion.logo,
+                        cursorColor: Colors.black54,
+                        decoration: InputDecoration(
+                          // labelText: 'Nombre',
+                          hintText: 'Logo URL',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
+                        onChanged: (value) => institucion.logo = value,
+                      ),
+                      SizedBox(height: 10),
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
@@ -316,7 +330,9 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                       proposito: '',
                                       programa: '',
                                     );
-                                    ofertaService.filtrarOferta(institucionService.institucionSeleccionado!.id!);
+                                    ofertaService.filtrarOferta(
+                                        institucionService
+                                            .institucionSeleccionado!.id!);
                                     Navigator.pushNamed(
                                         context, "agregarOferta");
                                   }),

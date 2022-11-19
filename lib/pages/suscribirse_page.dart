@@ -106,7 +106,11 @@ class _SuscribirsePageBody extends StatelessWidget {
                   if (!suscripcionFormProvider.isValidForm()) return;
                   await newsletterService.suscribirseNewsletter(
                       suscripcionFormProvider.suscripcion);
-                  // print("Se envió correctamente");
+                      const snackBar = SnackBar(
+                        content: Text('Suscripción realizada correctamente!'),
+                      );
+                      suscripcionFormProvider.formKey.currentState?.reset();
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }),
           ],
         ),

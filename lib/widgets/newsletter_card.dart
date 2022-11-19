@@ -66,6 +66,7 @@ class NewsletterCard extends StatelessWidget {
                     ),
                     child: IconButton(
                         onPressed: () {
+                          newsletterService.newsletterSeleccionado = newsletter.copy();
                           Navigator.pushNamed(context, "enviarNews");
                         },
                         icon: Icon(Icons.message_outlined)))),

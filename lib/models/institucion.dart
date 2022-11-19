@@ -14,7 +14,8 @@ class Institucion {
       this.instagram,
       this.cInscripcion,
       this.cColegiatura,
-      required this.telefono});
+      required this.telefono,
+      this.logo});
 
   String? id;
   String nombre;
@@ -29,6 +30,7 @@ class Institucion {
   String? cInscripcion;
   String? cColegiatura;
   String telefono;
+  String? logo;
 
   factory Institucion.fromJson(String str) =>
       Institucion.fromMap(json.decode(str));
@@ -47,6 +49,7 @@ class Institucion {
         cInscripcion: json["cInscripcion"],
         cColegiatura: json["cColegiatura"],
         telefono: json["telefono"],
+        logo: json["logo"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -62,6 +65,7 @@ class Institucion {
         "cInscripcion": cInscripcion,
         "cColegiatura": cColegiatura,
         "telefono": telefono,
+        "logo": logo,
       };
 
   Institucion copy() => Institucion(
@@ -77,6 +81,7 @@ class Institucion {
         cInscripcion: this.cInscripcion,
         cColegiatura: this.cColegiatura,
         telefono: this.telefono,
+        logo: this.logo,
         id: this.id,
       );
 }

@@ -110,6 +110,15 @@ class InstitucionService extends ChangeNotifier {
         this.resultados.indexWhere((element) => element.id == institucion.id);
     this.instituciones[index] = institucion;
     this.resultados[indexResult] = institucion;
+
+    final indexGuest = this
+        .institucionesGuest
+        .indexWhere((element) => element.id == institucion.id);
+    final indexResultGuest = this
+        .resultadosGuest
+        .indexWhere((element) => element.id == institucion.id);
+    this.institucionesGuest[index] = institucion;
+    this.resultadosGuest[indexResult] = institucion;
     isSaving = false;
     notifyListeners();
     return institucion.id!;

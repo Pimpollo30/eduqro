@@ -13,16 +13,29 @@ class InstitucionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(institucion.logo);
     final institucionService = Provider.of<InstitucionService>(context);
     return Container(
       width: double.infinity,
       child: ListTile(
-        leading: ClipRRect(
-            child: Image(
-              image: AssetImage('assets/no-image.png'),
-              fit: BoxFit.cover,
+        leading: Container(
+          width:64,
+          height:64,
+          child: ClipRRect(
+              child: 
+               institucion.logo == null || institucion.logo == "" ? 
+              Image(
+                image: AssetImage('assets/no-image.png'),
+                fit: BoxFit.fill,
+              )
+              :
+              FadeInImage(
+              placeholder: AssetImage('assets/jar-loading.gif'),
+              image: NetworkImage(institucion.logo!),
+              fit: BoxFit.fill,
             ),
-            borderRadius: BorderRadius.circular(5)),
+              borderRadius: BorderRadius.circular(5)),
+        ),
         title: Text(
           institucion.nombre,
           style: TextStyle(

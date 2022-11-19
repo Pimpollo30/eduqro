@@ -44,15 +44,11 @@ class NewsletterService extends ChangeNotifier {
     return this.newsletters;
   }
 
-  Future<String> suscribirseNewsletter(Suscripcion suscripcion) async {
+  Future suscribirseNewsletter(Suscripcion suscripcion) async {
     isSaving = true;
     notifyListeners();
     final url = Uri.https(_baseUrl, "suscripciones.json");
     final resp = await http.post(url, body: suscripcion.toJson());
-    final decodedData = json.decode(resp.body);
-    print(decodedData["name"]);
-    suscripcion.id = decodedData["name"];
-    return suscripcion.id!;
   }
 
   Future<String> agregarNewsletter(Newsletter newsletter) async {

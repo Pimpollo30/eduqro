@@ -59,8 +59,8 @@ class _NewsletterPageBody extends StatelessWidget {
             },
           ),
           Positioned(
-            right: 10,
-            bottom: 10,
+            right: 20,
+            bottom: 20,
             child: FloatingActionButton(
               backgroundColor: Colors.orange,
               heroTag: "crearNews",

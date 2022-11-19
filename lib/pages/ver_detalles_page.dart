@@ -49,14 +49,22 @@ class _VerDetallesPageBody_ extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                child: Image(
-                  image: AssetImage('assets/no-image.png'),
-                  width: double.infinity,
-                  height: 200,
-                  fit: BoxFit.cover,
+              Container(
+                width: double.infinity,
+                height:175,
+                child: ClipRRect(
+                  child: institucion.logo == null || institucion.logo == ""
+                      ? Image(
+                          image: AssetImage('assets/no-image.png'),
+                          fit: BoxFit.cover,
+                        )
+                      : FadeInImage(
+                          placeholder: AssetImage('assets/jar-loading.gif'),
+                          image: NetworkImage(institucion.logo!),
+                          fit: BoxFit.fill,
+                        ),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                borderRadius: BorderRadius.circular(10),
               ),
               SizedBox(height: 10),
               Text(institucion.nombre,

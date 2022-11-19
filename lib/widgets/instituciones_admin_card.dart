@@ -17,10 +17,23 @@ class InstitucionAdminCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: ListTile(
-        leading: ClipRRect(
-          child: Image(
-              image: AssetImage('assets/no-image.png'), fit: BoxFit.cover),
-          borderRadius: BorderRadius.circular(5),
+        leading:Container(
+          width:64,
+          height:64,
+          child: ClipRRect(
+              child: 
+               institucion.logo == null || institucion.logo == "" ? 
+              Image(
+                image: AssetImage('assets/no-image.png'),
+                fit: BoxFit.fill,
+              )
+              :
+              FadeInImage(
+              placeholder: AssetImage('assets/jar-loading.gif'),
+              image: NetworkImage(institucion.logo!),
+              fit: BoxFit.fill,
+            ),
+              borderRadius: BorderRadius.circular(5)),
         ),
         trailing: Container(
             decoration: BoxDecoration(
