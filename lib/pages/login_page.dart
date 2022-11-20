@@ -115,10 +115,12 @@ class _Login extends StatelessWidget {
                     Navigator.pop(context);
                   } else {
                     // print(resp);
-                    var snackBar = SnackBar(
-                      content: Text("Usuario o contraseña incorrectos!"),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    if (resp == "INVALID_PASSWORD" || resp == "EMAIL_NOT_FOUND") {
+                      var snackBar = SnackBar(
+                        content: Text("Usuario o contraseña incorrectos!"),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
                   }
                 }),
           ],
