@@ -7,13 +7,14 @@ import 'package:eduqro/pages/editar_oferta_educativa_page.dart';
 import 'package:eduqro/pages/enviar_newsletter_page.dart';
 import 'package:eduqro/pages/home_page.dart';
 import 'package:eduqro/pages/login_page.dart';
-import 'package:eduqro/pages/services/newsletter_service.dart';
-import 'package:eduqro/pages/services/oferta_form_service.dart';
+import 'package:eduqro/services/auth_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
+import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:eduqro/pages/ver_detalles_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/services/institucion_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
 
 void main() {
   runApp(AppState());
@@ -29,6 +30,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => InstitucionService()),
         ChangeNotifierProvider(create: (_) => NewsletterService()),
         ChangeNotifierProvider(create: (_) => OfertaService()),
+        ChangeNotifierProvider(create: (_) => AuthService()),
       ],
       child: MyApp(),
     );

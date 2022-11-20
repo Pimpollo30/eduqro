@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../../models/institucion.dart';
+import '../models/institucion.dart';
 
 class InstitucionService extends ChangeNotifier {
   final String _baseUrl = "eduqro-18b27-default-rtdb.firebaseio.com";
@@ -138,9 +138,12 @@ class InstitucionService extends ChangeNotifier {
     this.instituciones.removeAt(index);
     this.resultados.removeAt(indexResult);
 
-
-    final indexGuest = this.resultadosGuest.indexWhere((element) => element.id == institucion.id);
-    final indexResultGuest = this.resultadosGuest.indexWhere((element) => element.id == institucion.id);
+    final indexGuest = this
+        .resultadosGuest
+        .indexWhere((element) => element.id == institucion.id);
+    final indexResultGuest = this
+        .resultadosGuest
+        .indexWhere((element) => element.id == institucion.id);
     this.institucionesGuest.removeAt(indexGuest);
     this.resultadosGuest.removeAt(indexResultGuest);
     notifyListeners();

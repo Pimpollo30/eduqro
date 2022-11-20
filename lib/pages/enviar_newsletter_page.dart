@@ -1,4 +1,4 @@
-import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
 import 'package:eduqro/providers/newsletter_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,11 +42,9 @@ class _EnviarNewsletterPageBody extends StatefulWidget {
 }
 
 class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
-  
   SingingCharacter? _character = SingingCharacter.todos;
   @override
   Widget build(BuildContext context) {
-    
     String _ciudad = "Ciudad...";
     final newsletterFormProvider = Provider.of<NewsletterFormProvider>(context);
     final newsletter = newsletterFormProvider.newsletter;
@@ -98,7 +96,7 @@ class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
                           height: 10,
                         ),
                         Text(
-                          "Asunto: "+newsletter.asunto,
+                          "Asunto: " + newsletter.asunto,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17,
@@ -191,23 +189,33 @@ class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
                           onPressed: () async {
                             if (_character!.index == 0) {
                               // print("Todos");
-                              await widget.newsletterService.enviarNewsletter(newsletter);
+                              await widget.newsletterService
+                                  .enviarNewsletter(newsletter);
                               const snackBar = SnackBar(
-                                content: Text('Newsletter enviado a todos los suscritos!'),
+                                content: Text(
+                                    'Newsletter enviado a todos los suscritos!'),
                               );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                            }else if (_character!.index == 1 && _ciudad != "Ciudad...") {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            } else if (_character!.index == 1 &&
+                                _ciudad != "Ciudad...") {
                               // print("Algunos");
                               var snackBar = SnackBar(
-                                content: Text('Newsletter enviado únicamente a suscritos de ${_ciudad}'),
+                                content: Text(
+                                    'Newsletter enviado únicamente a suscritos de ${_ciudad}'),
                               );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);                              
-                              await widget.newsletterService.enviarNewsletter(newsletter, ciudad: _ciudad);
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                              await widget.newsletterService.enviarNewsletter(
+                                  newsletter,
+                                  ciudad: _ciudad);
                             } else {
                               var snackBar = SnackBar(
-                                content: Text('Por favor, selecciona una ciudad'),
+                                content:
+                                    Text('Por favor, selecciona una ciudad'),
                               );
-                              ScaffoldMessenger.of(context).showSnackBar(snackBar);                                  
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             }
                           }),
                     ],

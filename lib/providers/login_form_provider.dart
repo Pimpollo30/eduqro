@@ -10,14 +10,13 @@ class LoginFormProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  set isLoading (bool value) {
+  set isLoading(bool value) {
     _isLoading = value;
     notifyListeners();
   }
 
   //método para validar el formulario
-  bool isValidForm(){
+  bool isValidForm() {
     return formKey.currentState?.validate() ?? false;
   }
-
 }

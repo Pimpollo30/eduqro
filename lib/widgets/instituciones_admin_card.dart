@@ -1,5 +1,5 @@
 import 'package:eduqro/models/institucion.dart';
-import 'package:eduqro/pages/services/institucion_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,22 +17,20 @@ class InstitucionAdminCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: ListTile(
-        leading:Container(
-          width:64,
-          height:64,
+        leading: Container(
+          width: 64,
+          height: 64,
           child: ClipRRect(
-              child: 
-               institucion.logo == null || institucion.logo == "" ? 
-              Image(
-                image: AssetImage('assets/no-image.png'),
-                fit: BoxFit.fill,
-              )
-              :
-              FadeInImage(
-              placeholder: AssetImage('assets/jar-loading.gif'),
-              image: NetworkImage(institucion.logo!),
-              fit: BoxFit.fill,
-            ),
+              child: institucion.logo == null || institucion.logo == ""
+                  ? Image(
+                      image: AssetImage('assets/no-image.png'),
+                      fit: BoxFit.fill,
+                    )
+                  : FadeInImage(
+                      placeholder: AssetImage('assets/jar-loading.gif'),
+                      image: NetworkImage(institucion.logo!),
+                      fit: BoxFit.fill,
+                    ),
               borderRadius: BorderRadius.circular(5)),
         ),
         trailing: Container(

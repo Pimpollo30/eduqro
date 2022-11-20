@@ -1,6 +1,6 @@
 import 'package:eduqro/models/oferta.dart';
-import 'package:eduqro/pages/services/institucion_form_service.dart';
-import 'package:eduqro/pages/services/oferta_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
+import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:eduqro/providers/institucion_form_provider.dart';
 import 'package:eduqro/providers/oferta_form_provider.dart';
 import 'package:flutter/material.dart';
@@ -70,14 +70,14 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.nombre = value,
-                        validator: (value) { 
+                        validator: (value) {
                           if (value == null || value.length < 1) {
                             return 'El nombre es obligatorio';
                           }
-                        },                                
+                        },
                       ),
                       SizedBox(height: 10),
                       Row(
@@ -96,16 +96,15 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red),
-                                ),                                      
+                                ),
                               ),
-                              
                               items: _crearNiveles(),
                               onChanged: (value) => institucion.nivel = value,
-                              validator: (value) { 
+                              validator: (value) {
                                 if (value == "Nivel...") {
                                   return 'El nivel es obligatorio';
                                 }
-                              },                                      
+                              },
                             ),
                           ),
                           SizedBox(
@@ -125,15 +124,15 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red),
-                                ),                                      
+                                ),
                               ),
                               items: _creatSectores(),
                               onChanged: (value) => institucion.sector = value,
-                              validator: (value) { 
+                              validator: (value) {
                                 if (value == "Sector...") {
                                   return 'El sector es obligatorio';
                                 }
-                              },                                
+                              },
                             ),
                           ),
                         ],
@@ -151,15 +150,15 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         items: _crearCiudades(),
                         onChanged: (value) => institucion.ciudad = value,
-                        validator: (value) { 
+                        validator: (value) {
                           if (value == "Ciudad...") {
                             return 'La ciudad es obligatoria';
                           }
-                        },                          
+                        },
                       ),
                       SizedBox(height: 10),
                       // Text(
@@ -185,17 +184,18 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.direccion = value,
-                        validator: (value) { 
+                        validator: (value) {
                           if (value == null || value.length < 1) {
                             return 'La dirección es obligatoria';
                           }
-                        },                               
+                        },
                       ),
                       SizedBox(height: 10),
                       TextFormField(
+                        autocorrect: false,
                         initialValue: institucion.pagina,
                         cursorColor: Colors.black54,
                         decoration: InputDecoration(
@@ -210,12 +210,13 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.pagina = value,
                       ),
                       SizedBox(height: 10),
                       TextFormField(
+                        autocorrect: false,
                         initialValue: institucion.correo,
                         cursorColor: Colors.black54,
                         decoration: InputDecoration(
@@ -230,7 +231,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.correo = value,
                       ),
@@ -239,6 +240,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              autocorrect: false,
                               initialValue: institucion.facebook,
                               cursorColor: Colors.black54,
                               decoration: InputDecoration(
@@ -254,7 +256,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red),
-                                ),                                      
+                                ),
                               ),
                               onChanged: (value) =>
                                   institucion.facebook = value,
@@ -263,6 +265,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           SizedBox(width: 10),
                           Expanded(
                               child: TextFormField(
+                            autocorrect: false,
                             initialValue: institucion.instagram,
                             cursorColor: Colors.black54,
                             decoration: InputDecoration(
@@ -277,7 +280,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
-                              ),                                    
+                              ),
                             ),
                             onChanged: (value) => institucion.instagram = value,
                           )),
@@ -303,7 +306,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red),
-                                ),                                      
+                                ),
                               ),
                               onChanged: (value) =>
                                   institucion.cInscripcion = value,
@@ -326,7 +329,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
-                              ),                                    
+                              ),
                             ),
                             onChanged: (value) =>
                                 institucion.cColegiatura = value,
@@ -349,14 +352,14 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.telefono = value,
-                        validator: (value) { 
+                        validator: (value) {
                           if (value == null || value.length < 1) {
                             return 'El teléfono es obligatorio';
                           }
-                        },                                
+                        },
                       ),
                       SizedBox(height: 10),
                       TextFormField(
@@ -374,7 +377,7 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.logo = value,
                       ),

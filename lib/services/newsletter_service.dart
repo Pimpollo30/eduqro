@@ -38,6 +38,7 @@ class NewsletterService extends ChangeNotifier {
       notifyListeners();
       return [];
     }
+    
     final Map<String, dynamic> newslettersMap = json.decode(resp.body);
 
     newslettersMap.forEach((key, value) {
@@ -50,7 +51,6 @@ class NewsletterService extends ChangeNotifier {
     notifyListeners();
     return this.newsletters;
   }
-
 
   Future obtenerSuscritos() async {
     suscripcionesResultados.clear();
@@ -69,16 +69,15 @@ class NewsletterService extends ChangeNotifier {
     });
   }
 
-    Future filtrarSuscritos(String ciudad) async {
-    var contain =
-        this.suscripcionesResultados.where((element) => element.ciudad == ciudad);
+  Future filtrarSuscritos(String ciudad) async {
+    var contain = this
+        .suscripcionesResultados
+        .where((element) => element.ciudad == ciudad);
     this.suscripciones.clear();
     contain.forEach((element) {
       this.suscripciones.add(element.correo);
     });
   }
-
-  
 
   Future suscribirseNewsletter(Suscripcion suscripcion) async {
     isSaving = true;
@@ -136,36 +135,36 @@ class NewsletterService extends ChangeNotifier {
     return newsletter.id!;
   }
 
-  Future<dynamic> cargarPass() async { 
+  Future<dynamic> cargarPass() async {
     final resp = await rootBundle.loadString('assets/data.txt');
     final resJSON = json.decode(resp);
-  
+
     return resJSON;
   }
 
   Future enviarNewsletter(Newsletter newsletter, {String ciudad = ""}) async {
-      await this.obtenerSuscritos();
-      if (ciudad != "") {
-        await this.filtrarSuscritos(ciudad);
-      }
-      if (suscripciones.isEmpty) {
-        return;
-      }
-      Map dataJSON = await cargarPass();
-      final username = dataJSON["correo"];
-      final password = dataJSON["pw"];
-      final smtpServer = SmtpServer(
-        'smtp-relay.sendinblue.com',
-        port: 587,
-        username: username,
-        password: password,
-      );
+    await this.obtenerSuscritos();
+    if (ciudad != "") {
+      await this.filtrarSuscritos(ciudad);
+    }
+    if (suscripciones.isEmpty) {
+      return;
+    }
+    Map dataJSON = await cargarPass();
+    final username = dataJSON["correo"];
+    final password = dataJSON["pw"];
+    final smtpServer = SmtpServer(
+      'smtp-relay.sendinblue.com',
+      port: 587,
+      username: username,
+      password: password,
+    );
 
     final message = Message()
-      ..from = Address(dataJSON["correo"],'eduqro')
+      ..from = Address(dataJSON["correo"], 'eduqro')
       // ..recipients = suscripciones
       ..bccRecipients = suscripciones
-      ..subject = "Eduqro - "+newsletter.asunto
+      ..subject = "Eduqro - " + newsletter.asunto
       ..text = newsletter.contenido;
 
     try {
@@ -173,11 +172,10 @@ class NewsletterService extends ChangeNotifier {
       print('Message sent: ' + sendReport.toString());
     } on MailerException catch (e) {
       print('Message not sent.: ');
-      print("=="+e.message+"==");
+      print("==" + e.message + "==");
       for (var p in e.problems) {
         print('Problem: ${p.code}: ${p.msg}');
       }
     }
   }
-  
 }

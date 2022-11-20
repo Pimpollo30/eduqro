@@ -1,11 +1,11 @@
 import 'package:eduqro/models/oferta.dart';
-import 'package:eduqro/pages/services/institucion_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../../models/institucion.dart';
+import '../models/institucion.dart';
 
 class OfertaService extends ChangeNotifier {
   final String _baseUrl = "eduqro-18b27-default-rtdb.firebaseio.com";
@@ -18,10 +18,6 @@ class OfertaService extends ChangeNotifier {
 
   Oferta? ofertaSeleccionada;
 
-  set setIdInst(String id) {
-    idInst = id;
-  }
-
   notifyListeners();
 
   OfertaService() {
@@ -31,6 +27,11 @@ class OfertaService extends ChangeNotifier {
   Future obtenerOfertasEducativas() async {
     final url = Uri.https(_baseUrl, "ofertas.json");
     final resp = await http.get(url);
+    if (json.decode(resp.body) == null) {
+      this.isLoading = false;
+      notifyListeners();
+      return [];
+    }
 
     final Map<String, dynamic> ofertasMap = json.decode(resp.body);
 

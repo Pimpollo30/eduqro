@@ -1,5 +1,5 @@
 import 'package:eduqro/models/oferta.dart';
-import 'package:eduqro/pages/services/oferta_form_service.dart';
+import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

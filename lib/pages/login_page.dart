@@ -1,4 +1,5 @@
 import 'package:eduqro/providers/login_form_provider.dart';
+import 'package:eduqro/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,8 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      body:  ChangeNotifierProvider(create: (_) => LoginFormProvider(), child: _Login()),
+      body: ChangeNotifierProvider(
+          create: (_) => LoginFormProvider(), child: _Login()),
     );
   }
 }
@@ -32,49 +34,57 @@ class _Login extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
-              cursorColor: Colors.black54,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.email, color: Colors.orange),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                cursorColor: Colors.black54,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email, color: Colors.orange),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.orange)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey)),
+                  // labelText: 'Usuario o Correo Electronico',
+                  hintText: 'Correo electrónico',
                 ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                ),                       
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.orange)),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey)),
-                // labelText: 'Usuario o Correo Electronico',
-                hintText: 'Correo electrónico',
-              ),
-            validator: (value) {
-              String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-              RegExp regExp = new RegExp(pattern);
-              return regExp.hasMatch(value ?? '') ? null : 'El correo no es válido';
-            }
-            ),
+                onChanged: (value) => loginForm.email = value,
+                validator: (value) {
+                  String pattern =
+                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                  RegExp regExp = new RegExp(pattern);
+                  return regExp.hasMatch(value ?? '')
+                      ? null
+                      : 'El correo no es válido';
+                }),
             SizedBox(height: 10),
             TextFormField(
+              autocorrect: false,
+              obscureText: true,
               cursorColor: Colors.black54,
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock, color: Colors.orange),
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
-                  ),     
+                  ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
-                  ),             
+                  ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.orange)),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                   // labelText: 'Contraseña',
                   hintText: 'Contraseña'),
-                  validator: (value) {
-                    if (value != null && value.length >= 6) return null;
-                    return 'La contraseña debe ser de al menos 6 caracteres';
-                  },
+              onChanged: (value) => loginForm.password = value,
+              validator: (value) {
+                if (value != null && value.length >= 6) return null;
+                return 'La contraseña debe ser de al menos 6 caracteres';
+              },
             ),
             SizedBox(height: 10),
             MaterialButton(
@@ -95,8 +105,21 @@ class _Login extends StatelessWidget {
                   ),
                 ),
                 color: Colors.orange,
-                onPressed: () {
+                onPressed: () async {
                   if (!loginForm.isValidForm()) return;
+                  final authService =
+                      Provider.of<AuthService>(context, listen: false);
+                  final String? resp = await authService.iniciarSesion(
+                      loginForm.email, loginForm.password);
+                  if (resp == null) {
+                    Navigator.pop(context);
+                  } else {
+                    // print(resp);
+                    var snackBar = SnackBar(
+                      content: Text("Usuario o contraseña incorrectos!"),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 }),
           ],
         ),

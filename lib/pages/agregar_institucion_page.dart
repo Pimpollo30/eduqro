@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/institucion_form_provider.dart';
-import 'services/institucion_form_service.dart';
+import '../services/institucion_form_service.dart';
 
 class AgregarInstitucionPage extends StatelessWidget {
   // const AgregarInstitucionPage({super.key});
@@ -70,10 +70,10 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red),
-                          ),                                
+                          ),
                         ),
                         onChanged: (value) => institucion.nombre = value,
-                        validator: (value) { 
+                        validator: (value) {
                           if (value == null || value.length < 1) {
                             return 'El nombre es obligatorio';
                           }
@@ -84,83 +84,82 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: DropdownButtonFormField(
-                                value: institucion.nivel,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.orange)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey)),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.red),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.red),
-                                  ),                                            
+                              value: institucion.nivel,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.orange)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
-                                items: _crearNiveles(),
-                                onChanged: (value) => institucion.nivel = value,
-                                validator: (value) { 
-                                  if (value == "Nivel...") {
-                                    return 'El nivel es obligatorio';
-                                  }
-                                },                                
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
+                              ),
+                              items: _crearNiveles(),
+                              onChanged: (value) => institucion.nivel = value,
+                              validator: (value) {
+                                if (value == "Nivel...") {
+                                  return 'El nivel es obligatorio';
+                                }
+                              },
+                            ),
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Expanded(
                             child: DropdownButtonFormField(
-                                value: institucion.sector,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.orange)),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.grey)),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.red),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.red),
-                                  ),                                            
+                              value: institucion.sector,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.orange)),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey)),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
-                                items: _creatSectores(),
-                                onChanged: (value) => institucion.sector = value,
-                                validator: (value) { 
-                                  if (value == "Sector...") {
-                                    return 'El sector es obligatorio';
-                                  }
-                                },                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
+                                ),
+                              ),
+                              items: _creatSectores(),
+                              onChanged: (value) => institucion.sector = value,
+                              validator: (value) {
+                                if (value == "Sector...") {
+                                  return 'El sector es obligatorio';
+                                }
+                              },
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(height: 10),
                       DropdownButtonFormField(
-                          value: institucion.ciudad,
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.orange)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey)),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                        value: institucion.ciudad,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
-                          items: _crearCiudades(),
-                          onChanged: (value) => institucion.ciudad = value,
-                          validator: (value) { 
-                            if (value == "Ciudad...") {
-                              return 'La ciudad es obligatoria';
-                            }
-                          },                             
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
+                        ),
+                        items: _crearCiudades(),
+                        onChanged: (value) => institucion.ciudad = value,
+                        validator: (value) {
+                          if (value == "Ciudad...") {
+                            return 'La ciudad es obligatoria';
+                          }
+                        },
+                      ),
                       SizedBox(height: 10),
                       // Text(
                       //   'Área o Especialidad',
@@ -171,30 +170,31 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                       // ),
                       // _CheckBoxes(),
                       TextFormField(
-                          cursorColor: Colors.black54,
-                          decoration: InputDecoration(
-                            // labelText: 'Nombre',
-                            hintText: 'Dirección de la institución',
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.orange)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey)),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                        cursorColor: Colors.black54,
+                        decoration: InputDecoration(
+                          // labelText: 'Nombre',
+                          hintText: 'Dirección de la institución',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
-                          onChanged: (value) => institucion.direccion = value,
-                          validator: (value) { 
-                            if (value == null || value.length < 1) {
-                              return 'La dirección es obligatoria';
-                            }
-                          },                          
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
+                        ),
+                        onChanged: (value) => institucion.direccion = value,
+                        validator: (value) {
+                          if (value == null || value.length < 1) {
+                            return 'La dirección es obligatoria';
+                          }
+                        },
+                      ),
                       SizedBox(height: 10),
                       TextFormField(
+                          autocorrect: false,
                           cursorColor: Colors.black54,
                           decoration: InputDecoration(
                             // labelText: 'Nombre',
@@ -208,11 +208,12 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => institucion.pagina = value),
                       SizedBox(height: 10),
                       TextFormField(
+                          autocorrect: false,
                           cursorColor: Colors.black54,
                           decoration: InputDecoration(
                             // labelText: 'Nombre',
@@ -226,7 +227,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => institucion.correo = value),
                       SizedBox(height: 10),
@@ -234,6 +235,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                                autocorrect: false,
                                 cursorColor: Colors.black54,
                                 decoration: InputDecoration(
                                   // labelText: 'Nombre',
@@ -249,7 +251,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.red),
-                                  ),                                            
+                                  ),
                                 ),
                                 onChanged: (value) =>
                                     institucion.facebook = value),
@@ -257,6 +259,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                           SizedBox(width: 10),
                           Expanded(
                               child: TextFormField(
+                                  autocorrect: false,
                                   cursorColor: Colors.black54,
                                   decoration: InputDecoration(
                                     // labelText: 'Nombre',
@@ -266,14 +269,13 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                                             BorderSide(color: Colors.orange)),
                                     enabledBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: Colors.grey)
-                                            ),
+                                            BorderSide(color: Colors.grey)),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red),
-                                    ),                                              
+                                    ),
                                   ),
                                   onChanged: (value) =>
                                       institucion.instagram = value)),
@@ -299,7 +301,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.red),
-                                  ),                                            
+                                  ),
                                 ),
                                 onChanged: (value) =>
                                     institucion.cInscripcion = value),
@@ -322,7 +324,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red),
-                                    ),                                              
+                                    ),
                                   ),
                                   onChanged: (value) =>
                                       institucion.cColegiatura = value)),
@@ -330,29 +332,29 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                          cursorColor: Colors.black54,
-                          decoration: InputDecoration(
-                            // labelText: 'Nombre',
-                            hintText: 'Teléfono',
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.orange)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey)),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                        cursorColor: Colors.black54,
+                        decoration: InputDecoration(
+                          // labelText: 'Nombre',
+                          hintText: 'Teléfono',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
-                          onChanged: (value) => institucion.telefono = value,
-                          validator: (value) { 
-                            if (value == null || value.length < 1) {
-                              return 'El teléfono es obligatorio';
-                            }
-                          },                          
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
-                          
+                        ),
+                        onChanged: (value) => institucion.telefono = value,
+                        validator: (value) {
+                          if (value == null || value.length < 1) {
+                            return 'El teléfono es obligatorio';
+                          }
+                        },
+                      ),
+
                       SizedBox(height: 10),
                       TextFormField(
                           cursorColor: Colors.black54,
@@ -368,7 +370,7 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => institucion.logo = value),
                       SizedBox(height: 10),

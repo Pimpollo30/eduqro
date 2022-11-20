@@ -1,4 +1,4 @@
-import 'package:eduqro/pages/services/oferta_form_service.dart';
+import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:eduqro/providers/oferta_form_provider.dart';
 import 'package:eduqro/widgets/oferta_educativa_admin.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +90,7 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => oferta.nombre = value,
                         ),
@@ -113,7 +113,7 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => oferta.proposito = value,
                         ),
@@ -136,7 +136,7 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.red),
-                            ),                                  
+                            ),
                           ),
                           onChanged: (value) => oferta.programa = value,
                         ),

@@ -1,5 +1,5 @@
 import 'package:eduqro/models/newsletter.dart';
-import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +39,7 @@ class NewsletterCard extends StatelessWidget {
               top: 50,
               left: 10,
               child: Text(
-                "Asunto: "+newsletter.asunto,
+                "Asunto: " + newsletter.asunto,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -66,7 +66,8 @@ class NewsletterCard extends StatelessWidget {
                     ),
                     child: IconButton(
                         onPressed: () {
-                          newsletterService.newsletterSeleccionado = newsletter.copy();
+                          newsletterService.newsletterSeleccionado =
+                              newsletter.copy();
                           Navigator.pushNamed(context, "enviarNews");
                         },
                         icon: Icon(Icons.message_outlined)))),

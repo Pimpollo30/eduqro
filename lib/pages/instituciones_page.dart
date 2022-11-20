@@ -1,6 +1,6 @@
 import 'package:eduqro/models/institucion.dart';
 import 'package:eduqro/pages/loading_page.dart';
-import 'package:eduqro/pages/services/institucion_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
 import 'package:eduqro/widgets/instituciones_admin_card.dart';
 import 'package:eduqro/widgets/instituciones_card.dart';
 import 'package:flutter/material.dart';

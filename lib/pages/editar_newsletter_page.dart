@@ -1,4 +1,4 @@
-import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
 import 'package:eduqro/providers/newsletter_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,15 +61,15 @@ class _EditarNewsletterPageBody extends StatelessWidget {
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red),
-                      ),                            
+                      ),
                       // labelText: 'Asunto o tema',
                       hintText: 'Asunto o tema'),
                   onChanged: (value) => newsletter.asunto = value,
-                  validator: (value) { 
+                  validator: (value) {
                     if (value == null || value.length < 1) {
                       return 'El asunto es obligatorio';
                     }
-                  },                     
+                  },
                 ),
                 SizedBox(height: 10),
                 TextFormField(
@@ -88,16 +88,16 @@ class _EditarNewsletterPageBody extends StatelessWidget {
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red),
-                    ),                          
+                    ),
                     hintText: 'Contenido del boletín',
                     //hintText: 'Texto prueba - te amamos patrón'
                   ),
                   onChanged: (value) => newsletter.contenido = value,
-                  validator: (value) { 
+                  validator: (value) {
                     if (value == null || value.length < 1) {
                       return 'El contenido es obligatorio';
                     }
-                  },                     
+                  },
                 ),
                 SizedBox(height: 10),
                 Center(

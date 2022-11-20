@@ -1,5 +1,5 @@
 import 'package:eduqro/models/suscripcion.dart';
-import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
 import 'package:eduqro/providers/suscripcion_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +58,8 @@ class _SuscribirsePageBody extends StatelessWidget {
                 )),
             SizedBox(height: 10),
             TextFormField(
+              autocorrect: false,
+              keyboardType: TextInputType.emailAddress,
               cursorColor: Colors.black54,
               decoration: InputDecoration(
                 // labelText: 'Correo electrónico',
@@ -66,47 +68,46 @@ class _SuscribirsePageBody extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.orange)),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),                      
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
               ),
               onChanged: (value) => suscripcion.correo = value,
-              validator: (value) { 
+              validator: (value) {
                 if (value == null || value.length < 1) {
                   return 'Por favor, escribe tu correo';
                 }
-              },              
+              },
             ),
             SizedBox(height: 10),
             DropdownButtonFormField(
-                value: 'Ciudad...',
-                decoration: InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.orange)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey)),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
-                  ),                                
+              value: 'Ciudad...',
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.orange)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey)),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
                 ),
-                items: _crearCiudades(),
-                onChanged: (value) {
-                  // _ciudad = value;
-                  suscripcion.ciudad = value;
-                },
-                validator: (value) { 
-                  if (value == "Ciudad...") {
-                    return 'Por favor, selecciona una ciudad';
-                  }
-                },
-                
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
                 ),
+              ),
+              items: _crearCiudades(),
+              onChanged: (value) {
+                // _ciudad = value;
+                suscripcion.ciudad = value;
+              },
+              validator: (value) {
+                if (value == "Ciudad...") {
+                  return 'Por favor, selecciona una ciudad';
+                }
+              },
+            ),
             SizedBox(height: 10),
             MaterialButton(
                 shape: RoundedRectangleBorder(
@@ -130,11 +131,11 @@ class _SuscribirsePageBody extends StatelessWidget {
                   if (!suscripcionFormProvider.isValidForm()) return;
                   await newsletterService.suscribirseNewsletter(
                       suscripcionFormProvider.suscripcion);
-                      const snackBar = SnackBar(
-                        content: Text('Suscripción realizada correctamente!'),
-                      );
-                      suscripcionFormProvider.formKey.currentState?.reset();
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  const snackBar = SnackBar(
+                    content: Text('Suscripción realizada correctamente!'),
+                  );
+                  suscripcionFormProvider.formKey.currentState?.reset();
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }),
           ],
         ),

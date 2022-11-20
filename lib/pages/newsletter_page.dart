@@ -1,7 +1,6 @@
 import 'package:eduqro/models/newsletter.dart';
-import 'package:eduqro/models/suscripcion.dart';
 import 'package:eduqro/pages/loading_page.dart';
-import 'package:eduqro/pages/services/newsletter_service.dart';
+import 'package:eduqro/services/newsletter_service.dart';
 import 'package:eduqro/providers/newsletter_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

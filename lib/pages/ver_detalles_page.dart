@@ -1,7 +1,7 @@
 import 'package:eduqro/models/oferta.dart';
 import 'package:eduqro/pages/loading_page.dart';
-import 'package:eduqro/pages/services/institucion_form_service.dart';
-import 'package:eduqro/pages/services/oferta_form_service.dart';
+import 'package:eduqro/services/institucion_form_service.dart';
+import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:eduqro/providers/institucion_form_provider.dart';
 import 'package:eduqro/widgets/oferta_educativa_admin.dart';
 import 'package:eduqro/widgets/oferta_educativa_card.dart';
@@ -51,7 +51,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height:175,
+                height: 175,
                 child: ClipRRect(
                   child: institucion.logo == null || institucion.logo == ""
                       ? Image(
