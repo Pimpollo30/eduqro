@@ -25,12 +25,12 @@ class InstitucionCard extends StatelessWidget {
               child: institucion.logo == null || institucion.logo == ""
                   ? Image(
                       image: AssetImage('assets/no-image.png'),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     )
                   : FadeInImage(
                       placeholder: AssetImage('assets/jar-loading.gif'),
                       image: NetworkImage(institucion.logo!),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.scaleDown,
                     ),
               borderRadius: BorderRadius.circular(5)),
         ),

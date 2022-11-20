@@ -135,7 +135,7 @@ class BusquedaForm extends StatelessWidget {
                     ),
                     onTap: () async {
                       institucionService.institucionSeleccionadoGuest =
-                          institucionService.instituciones[index].copy();
+                          institucionService.institucionesGuest[index].copy();
                       await institucionService.obtenerOfertasEducativas();
                       await institucionService.filtrarOferta();
                       Navigator.pushNamed(context, "verDetalles");

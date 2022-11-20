@@ -61,7 +61,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       : FadeInImage(
                           placeholder: AssetImage('assets/jar-loading.gif'),
                           image: NetworkImage(institucion.logo!),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.fitWidth,
                         ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -88,7 +88,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       padding: EdgeInsets.only(right: 10)),
                 ),
                 TextSpan(
-                    text: institucion.pagina,
+                    text: institucion.pagina == null || institucion.pagina == "" ? '-' : institucion.pagina,
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -103,7 +103,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       padding: EdgeInsets.only(right: 10)),
                 ),
                 TextSpan(
-                    text: institucion.correo,
+                    text: institucion.correo == null || institucion.correo == "" ? '-' : institucion.correo,
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -118,7 +118,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       padding: EdgeInsets.only(right: 10)),
                 ),
                 TextSpan(
-                    text: institucion.telefono,
+                    text: institucion.telefono == null || institucion.telefono == "" ? '-' : institucion.telefono,
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -133,7 +133,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       padding: EdgeInsets.only(right: 10)),
                 ),
                 TextSpan(
-                    text: institucion.facebook,
+                    text: institucion.facebook == null || institucion.facebook == "" ? '-' : institucion.facebook,
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -148,7 +148,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       padding: EdgeInsets.only(right: 10)),
                 ),
                 TextSpan(
-                    text: institucion.instagram,
+                    text: institucion.instagram == null || institucion.instagram == "" ? '-' : institucion.instagram,
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -161,7 +161,7 @@ class _VerDetallesPageBody_ extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 17)),
               Text(
-                  "Inscripción: \$${institucion.cInscripcion} | Colegiatura: \$${institucion.cInscripcion}",
+                  "Inscripción: \$${institucion.cInscripcion == null || institucion.cInscripcion == "" ? '0' : institucion.cInscripcion} | Colegiatura: \$${institucion.cColegiatura == null || institucion.cColegiatura == "" ? '0' : institucion.cColegiatura}",
                   style: TextStyle(color: Colors.black87, fontSize: 15)),
               SizedBox(height: 10),
               ExpansionTile(
