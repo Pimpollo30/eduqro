@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../providers/institucion_form_provider.dart';
 import '../services/institucion_form_service.dart';
@@ -286,6 +287,10 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'^(\d+)?\.?\d{0,2}'))
+                                ],
                                 cursorColor: Colors.black54,
                                 decoration: InputDecoration(
                                   // labelText: 'Nombre',
@@ -309,6 +314,10 @@ class _AgregarInstitucionPageBody extends StatelessWidget {
                           SizedBox(width: 10),
                           Expanded(
                               child: TextFormField(
+                                  inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'^(\d+)?\.?\d{0,2}'))
+                              ],
                                   cursorColor: Colors.black54,
                                   decoration: InputDecoration(
                                     // labelText: 'Nombre',

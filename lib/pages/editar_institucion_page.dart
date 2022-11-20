@@ -4,6 +4,7 @@ import 'package:eduqro/services/oferta_form_service.dart';
 import 'package:eduqro/providers/institucion_form_provider.dart';
 import 'package:eduqro/providers/oferta_form_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class EditarInstitucionPage extends StatelessWidget {
@@ -291,6 +292,10 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'^(\d+)?\.?\d{0,2}'))
+                              ],
                               initialValue: institucion.cInscripcion,
                               cursorColor: Colors.black54,
                               decoration: InputDecoration(
@@ -315,6 +320,10 @@ class _EditarInstitucionPageBody extends StatelessWidget {
                           SizedBox(width: 10),
                           Expanded(
                               child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^(\d+)?\.?\d{0,2}'))
+                            ],
                             initialValue: institucion.cColegiatura,
                             cursorColor: Colors.black54,
                             decoration: InputDecoration(
