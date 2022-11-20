@@ -60,7 +60,11 @@ class InstitucionService extends ChangeNotifier {
     resultadosOfertas.clear();
     final url = Uri.https(_baseUrl, "ofertas.json");
     final resp = await http.get(url);
-
+    if (json.decode(resp.body) == null) {
+      this.isLoading = false;
+      notifyListeners();
+      return [];
+    }
     final Map<String, dynamic> ofertasMap = json.decode(resp.body);
 
     ofertasMap.forEach((key, value) {
