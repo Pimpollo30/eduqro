@@ -66,8 +66,19 @@ class _SuscribirsePageBody extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.orange)),
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),                      
               ),
               onChanged: (value) => suscripcion.correo = value,
+              validator: (value) { 
+                if (value == null || value.length < 1) {
+                  return 'Por favor, escribe tu correo';
+                }
+              },              
             ),
             SizedBox(height: 10),
             DropdownButtonFormField(
@@ -77,12 +88,25 @@ class _SuscribirsePageBody extends StatelessWidget {
                       borderSide: BorderSide(color: Colors.orange)),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),                                
                 ),
                 items: _crearCiudades(),
                 onChanged: (value) {
                   // _ciudad = value;
                   suscripcion.ciudad = value;
-                }),
+                },
+                validator: (value) { 
+                  if (value == "Ciudad...") {
+                    return 'Por favor, selecciona una ciudad';
+                  }
+                },
+                
+                ),
             SizedBox(height: 10),
             MaterialButton(
                 shape: RoundedRectangleBorder(

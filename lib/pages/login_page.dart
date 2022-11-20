@@ -1,7 +1,9 @@
+import 'package:eduqro/providers/login_form_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  // const LoginPage({super.key}); ChangeNotifierProvider(create: (_) => LoginFormProvider(), child: _LoginForm()),
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       ),
-      body: _Login(),
+      body:  ChangeNotifierProvider(create: (_) => LoginFormProvider(), child: _Login()),
     );
   }
 }
@@ -22,14 +24,23 @@ class LoginPage extends StatelessWidget {
 class _Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final loginForm = Provider.of<LoginFormProvider>(context);
     return Container(
       padding: EdgeInsets.all(10),
       child: Form(
+        key: loginForm.formKey,
         child: Column(
           children: [
             TextFormField(
               cursorColor: Colors.black54,
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email, color: Colors.orange),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                ),                       
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.orange)),
                 enabledBorder: OutlineInputBorder(
@@ -37,17 +48,33 @@ class _Login extends StatelessWidget {
                 // labelText: 'Usuario o Correo Electronico',
                 hintText: 'Correo electrónico',
               ),
+            validator: (value) {
+              String pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+              RegExp regExp = new RegExp(pattern);
+              return regExp.hasMatch(value ?? '') ? null : 'El correo no es válido';
+            }
             ),
             SizedBox(height: 10),
             TextFormField(
               cursorColor: Colors.black54,
               decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock, color: Colors.orange),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),     
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),             
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.orange)),
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey)),
                   // labelText: 'Contraseña',
                   hintText: 'Contraseña'),
+                  validator: (value) {
+                    if (value != null && value.length >= 6) return null;
+                    return 'La contraseña debe ser de al menos 6 caracteres';
+                  },
             ),
             SizedBox(height: 10),
             MaterialButton(
@@ -68,7 +95,9 @@ class _Login extends StatelessWidget {
                   ),
                 ),
                 color: Colors.orange,
-                onPressed: () {}),
+                onPressed: () {
+                  if (!loginForm.isValidForm()) return;
+                }),
           ],
         ),
       ),

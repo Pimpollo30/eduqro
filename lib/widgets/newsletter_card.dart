@@ -39,7 +39,7 @@ class NewsletterCard extends StatelessWidget {
               top: 50,
               left: 10,
               child: Text(
-                newsletter.asunto,
+                "Asunto: "+newsletter.asunto,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

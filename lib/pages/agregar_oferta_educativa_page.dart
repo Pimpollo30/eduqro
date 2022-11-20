@@ -85,6 +85,12 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.orange)),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),                                  
                           ),
                           onChanged: (value) => oferta.nombre = value,
                         ),
@@ -102,6 +108,12 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.orange)),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),                                  
                           ),
                           onChanged: (value) => oferta.proposito = value,
                         ),
@@ -119,6 +131,12 @@ class _AgregarOfertaEducativaPageBody extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.orange)),
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),                                  
                           ),
                           onChanged: (value) => oferta.programa = value,
                         ),

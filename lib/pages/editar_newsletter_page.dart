@@ -56,9 +56,20 @@ class _EditarNewsletterPageBody extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.orange)),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey)),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                      ),                            
                       // labelText: 'Asunto o tema',
                       hintText: 'Asunto o tema'),
                   onChanged: (value) => newsletter.asunto = value,
+                  validator: (value) { 
+                    if (value == null || value.length < 1) {
+                      return 'El asunto es obligatorio';
+                    }
+                  },                     
                 ),
                 SizedBox(height: 10),
                 TextFormField(
@@ -72,10 +83,21 @@ class _EditarNewsletterPageBody extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.orange)),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey)),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                    ),                          
                     hintText: 'Contenido del boletín',
                     //hintText: 'Texto prueba - te amamos patrón'
                   ),
                   onChanged: (value) => newsletter.contenido = value,
+                  validator: (value) { 
+                    if (value == null || value.length < 1) {
+                      return 'El contenido es obligatorio';
+                    }
+                  },                     
                 ),
                 SizedBox(height: 10),
                 Center(

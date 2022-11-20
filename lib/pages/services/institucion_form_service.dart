@@ -137,6 +137,12 @@ class InstitucionService extends ChangeNotifier {
         this.resultados.indexWhere((element) => element.id == institucion.id);
     this.instituciones.removeAt(index);
     this.resultados.removeAt(indexResult);
+
+
+    final indexGuest = this.resultadosGuest.indexWhere((element) => element.id == institucion.id);
+    final indexResultGuest = this.resultadosGuest.indexWhere((element) => element.id == institucion.id);
+    this.institucionesGuest.removeAt(indexGuest);
+    this.resultadosGuest.removeAt(indexResultGuest);
     notifyListeners();
     return institucion.id!;
   }

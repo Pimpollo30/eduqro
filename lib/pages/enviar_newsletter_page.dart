@@ -42,12 +42,14 @@ class _EnviarNewsletterPageBody extends StatefulWidget {
 }
 
 class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
+  
   SingingCharacter? _character = SingingCharacter.todos;
   @override
   Widget build(BuildContext context) {
+    
     String _ciudad = "Ciudad...";
     final newsletterFormProvider = Provider.of<NewsletterFormProvider>(context);
-    final newsletter = newsletterFormProvider.newsletter!;
+    final newsletter = newsletterFormProvider.newsletter;
     return Scaffold(
         appBar: AppBar(title: Text("Enviar Newsletter")),
         body: SingleChildScrollView(
@@ -96,7 +98,7 @@ class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
                           height: 10,
                         ),
                         Text(
-                          "Asunto",
+                          "Asunto: "+newsletter.asunto,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17,
@@ -104,7 +106,7 @@ class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
                           ),
                         ),
                         Text(
-                          newsletter.asunto,
+                          newsletter.contenido,
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black87,
@@ -186,7 +188,28 @@ class __EnviarNewsletterPageBodyState extends State<_EnviarNewsletterPageBody> {
                             ),
                           ),
                           color: Colors.orange,
-                          onPressed: () {}),
+                          onPressed: () async {
+                            if (_character!.index == 0) {
+                              // print("Todos");
+                              await widget.newsletterService.enviarNewsletter(newsletter);
+                              const snackBar = SnackBar(
+                                content: Text('Newsletter enviado a todos los suscritos!'),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            }else if (_character!.index == 1 && _ciudad != "Ciudad...") {
+                              // print("Algunos");
+                              var snackBar = SnackBar(
+                                content: Text('Newsletter enviado únicamente a suscritos de ${_ciudad}'),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);                              
+                              await widget.newsletterService.enviarNewsletter(newsletter, ciudad: _ciudad);
+                            } else {
+                              var snackBar = SnackBar(
+                                content: Text('Por favor, selecciona una ciudad'),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);                                  
+                            }
+                          }),
                     ],
                   )),
                 ],
