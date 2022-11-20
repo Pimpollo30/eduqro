@@ -61,6 +61,7 @@ class OfertaService extends ChangeNotifier {
     print(decodedData["name"]);
     oferta.id = decodedData["name"];
     this.ofertas.add(oferta);
+    this.resultados.add(oferta);
     isSaving = false;
     notifyListeners();
     return oferta.id!;
@@ -76,6 +77,9 @@ class OfertaService extends ChangeNotifier {
     //actualizamos el listado de productos
     final index = this.ofertas.indexWhere((element) => element.id == oferta.id);
     this.ofertas[index] = oferta;
+
+    final indexResultados = this.resultados.indexWhere((element) => element.id == oferta.id);
+    this.resultados[indexResultados] = oferta;
 
     isSaving = false;
     notifyListeners();
