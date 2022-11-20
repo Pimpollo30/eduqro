@@ -94,6 +94,8 @@ class InstitucionService extends ChangeNotifier {
     institucion.id = decodedData["name"];
     this.instituciones.add(institucion);
     this.resultados.add(institucion);
+    this.institucionesGuest.add(institucion);
+    this.resultadosGuest.add(institucion);    
     isSaving = false;
     notifyListeners();
     return institucion.id!;
