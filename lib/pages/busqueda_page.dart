@@ -24,7 +24,7 @@ class BusquedaForm extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.all(10),
             width: double.infinity,
             child: Form(
                 child: Column(
@@ -162,18 +162,18 @@ List<String> sectores = [
 List<String> ciudades = [
   'Ciudad...',
   'Amealco de Bonfil',
-  'Pinal de Amoles',
   'Arroyo Seco',
   'Cadereyta de Montes',
   'Colón',
   'Corregidora',
+  'El Marqués',
   'Ezequiel Montes',
   'Huimilpan',
   'Jalpan de Serra',
   'Landa de Matamoros',
-  'El Marqués',
   'Pedro Escobedo',
   'Peñamiller',
+  'Pinal de Amoles',  
   'Querétaro',
   'San Joaquín',
   'San Juan del Río',

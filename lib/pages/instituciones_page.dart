@@ -20,35 +20,38 @@ class _InstitucionesPageState extends State<InstitucionesPage> {
 
     if (institucionService.isLoading) return LoadingPage();
     return Container(
-      padding: EdgeInsets.all(10),
+      // padding: EdgeInsets.all(10),
       child: Stack(
         children: [
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Form(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10),
-                    TextFormField(
-                      cursorColor: Colors.black54,
-                      decoration: InputDecoration(
-                        // labelText: 'Nombre',
-                        hintText: 'Nombre',
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.orange)),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey)),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: Form(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      TextFormField(
+                        cursorColor: Colors.black54,
+                        decoration: InputDecoration(
+                          // labelText: 'Nombre',
+                          hintText: 'Nombre',
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.orange)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey)),
+                        ),
+                        onChanged: (value) async {
+                          institucionService.buscarInstByName(value);
+                        },
                       ),
-                      onChanged: (value) async {
-                        institucionService.buscarInstByName(value);
-                      },
-                    ),
-                    SizedBox(height: 10),
-                  ],
-                )),
+                      SizedBox(height: 10),
+                    ],
+                  )),
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
