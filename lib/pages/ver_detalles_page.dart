@@ -50,8 +50,8 @@ class _VerDetallesPageBody_ extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: double.infinity,
-                height: 175,
+                // width: double.infinity,
+                constraints: BoxConstraints(minWidth: double.infinity, minHeight: 200),
                 child: ClipRRect(
                   child: institucion.logo == null || institucion.logo == ""
                       ? Image(
